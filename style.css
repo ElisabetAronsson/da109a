@@ -1,0 +1,125 @@
+
+body {
+    margin: 0px;
+    height: 100vh;
+    width: 100vw;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.imageBackground{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("graffiti-gbbe3d05e4_1920.jpg");
+}
+
+.blackBackground {
+    background-color: black;
+}
+
+#searchBox {
+    
+    width: 80%;
+    height: 60%;
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    font-family: "Fredoka One";
+    font-size: 50px;
+    background: linear-gradient(90deg,#FF20CE 4.08%, #9E00FF 46.17%, #4AE9DF 88.27%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+   
+}
+#titleBox {
+    width: fit-content;
+    
+}
+
+
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+    
+}
+
+.flexRow{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.flexSpaceAround {
+    display: flex;
+    justify-content: space-around;
+    }
+
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-size: 14px;
+}
+
+input:focus-visible, select:focus-visible {
+    outline: none;
+}
+
+input{
+    padding: 3px;
+    border: none;
+}
+
+button {
+    margin-bottom: 30px;
+    width: 70px;
+    padding: 3px;
+    background-color: white;
+    box-shadow: 0px 0px 31px 0px #FF20CE;
+    border: none;
+    margin: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+button:hover{
+    box-shadow: none;
+}
+
+
+@media screen and (max-width: 560px) {
+    .flexRow{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .flexColumn {
+        align-items: center;
+    }
+
+    input{
+        width: 150px;
+    }
+
+    .inputBox {
+        padding: 15px;
+    }
+
+    #searchBox {
+        height: 80%;
+    }
+}
+
