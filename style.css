@@ -2,7 +2,7 @@
 body {
     margin: 0px;
     font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
 }
 
 .imageBackground{
@@ -21,7 +21,7 @@ body {
 .h1Small{
     font-family: "Fredoka One";
     font-size: 25px;
-    background: linear-gradient(90deg,#FF20CE 4.08%, #9E00FF 46.17%, #4AE9DF 88.27%);
+    background: linear-gradient(90deg,#FF20CE 4.08%, #9E00FF 46.17%, #10d1c4 88.27%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding-left: 20px;
@@ -44,7 +44,7 @@ body {
     text-align: center;
     font-family: "Fredoka One";
     font-size: 50px;
-    background: linear-gradient(90deg,#FF20CE 4.08%, #9E00FF 46.17%, #4AE9DF 88.27%);
+    background: linear-gradient(90deg,#FF20CE 4.08%, #9E00FF 46.17%, #10d1c4 88.27%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding: 0 20px;
@@ -72,14 +72,16 @@ form {
             color: #FF20CE;
             text-align: center;
             padding: 5px;
-            font-size: 14px;
-            letter-spacing: 3px;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         input{
             padding: 5px;
             border: none;
             width: 250px;
+            background-color: #adf6f2;
+            font-weight: bold;
         }
 
         input:focus-visible, select:focus-visible {
@@ -88,18 +90,19 @@ form {
 
 button {
     margin-bottom: 30px;
-    width: 70px;
-    padding: 5px;
-    background-color: white;
-    box-shadow: 0px 0px 31px 0px #FF20CE;
+    width: 80px;
+    padding: 7px;
+    background-color:#FF20CE;
     border: none;
     margin: 60px;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
+    border-radius: 10px;
 }
 
 button:hover{
-    box-shadow: none;
+    border-radius: 10px;
+    color:#adf6f2;
 }
 
 /*eventAndArtist.html*/
@@ -134,29 +137,41 @@ section {
 }
 
 #border {
-    border-right: 2px solid white;
+    border-right: 2px solid #FF20CE;
 }
 
 span {
     width: 200px;
     height: 250px;
-    border: 2px solid white;
-    margin: 20px;
+    border: 2px solid #9E00FF;
+    margin: 30px;
 }
 
 #map {
-    border: 2px solid white;
+    border: 2px solid #9E00FF;
     width: 300px;
     height: 200px;
-    margin: 20px;
+    margin: 30px;
 }
 
-p, h2, h3 {
-    color:white;
+p {
+    color:#adf6f2;
+    font-size: 15px;
+}
+
+h2 {
+    text-transform: uppercase;
+    font-size: 35px;
+    color:#FF20CE;
+    font-family: "Fredoka One";
+    padding-bottom: 20px;
 }
 
 h3 {
-    padding:  0 50px 0 0;
+    padding:  10px 50px 0 0;
+    text-transform: uppercase;
+    color: #FF20CE;
+
 }
 
 
@@ -172,6 +187,20 @@ h3 {
 
     #searchBox {
         height: 80%;
+    }
+
+    #container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #border {
+        display:none;
+    }
+    section:first-of-type {
+        border-bottom: 2px solid #FF20CE;
+        padding-bottom: 60px;
+        margin-bottom: 60px;
     }
 }
 
