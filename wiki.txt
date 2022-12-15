@@ -1,0 +1,9 @@
+https://en.wikipedia.org/api/rest_v1/#/ api dokumentation
+
+https://en.wikipedia.org/api/rest_v1/page/summary/
+
+originalimage: {
+    source: länk
+}
+
+extrakt: text beskrivning
