@@ -1,36 +1,19 @@
-function getTokens(){
-    var client_id = 'ee0bdca0269146eaa8345787f079f9d2';
-    var redirect_uri = 'http://localhost:8888/callback';
-    
-    var app = express();
-    
-    app.get('/login', function(req, res) {
-    
-      var state = generateRandomString(16);
-      var scope = 'user-follow-read';
-    
-      res.redirect('https://accounts.spotify.com/authorize?' +
-        querystring.stringify({
-          response_type: 'code',
-          client_id: client_id,
-          scope: scope,
-          redirect_uri: redirect_uri,
-          state: state
-        }));
+function getTokens() {
+        const params= new URLSearchParams({
+            client_id :'ee0bdca0269146eaa8345787f079f9d2',
+            scope :'user-follow-read',
+            rederect_uri : 'http://localhost:5000/callback',
+            response_type:"code"
+        })
+       
+
+        $.ajax({
+            method: "GET",
+            url: "https://accounts.spotify.com/authorize?response_type=code&client_id=ee0bdca0269146eaa8345787f079f9d2&scope=user-follow-read&redirect_uri=http://localhost:5000/callback",
+        
+        })
+        .done(function(result){
+            console.log(JSON.stringify(result));
     });
+   
 }
-
-
-
-fetch('https://accounts.spotify.com/api/token', {
-    method: 'POST',
-    headers: {
-        'Authorization': 'Basic credentials',
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
-    },
-    body: 'grant_type=client_credentials'
-})
-.then(response => response.json())
-.then(data => {
-    console.log(data);
-});

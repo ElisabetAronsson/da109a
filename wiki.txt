@@ -7,3 +7,11 @@ originalimage: {
 }
 
 extrakt: text beskrivning
+
+
+
+
+
+post to endpoint client id, scope och redirect uri
+
+api/token endpoint post authorization code and klients secret key returns accesstoken and refreshtoken 
