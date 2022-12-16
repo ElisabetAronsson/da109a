@@ -3,14 +3,13 @@ function getTokens() {
             response_type:"code",
             client_id :'ee0bdca0269146eaa8345787f079f9d2',
             scope :'user-follow-read',
-            rederect_uri : 'http://localhost:5000/callback',
-            
-        })
+            redirect_uri : 'http://localhost:5000/callback',
+        });
        
-
+        
         $.ajax({
             method: "GET",
-            url: "https://accounts.spotify.com/authorize?client_id=" + params.toString(),
+            url: "https://accounts.spotify.com/authorize?"+ params.toString(),
             headers: {"Accept": "application/json"}
         })
         .done(function(result){
