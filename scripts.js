@@ -9,14 +9,4 @@ function getTokens() {
   const url = "https://accounts.spotify.com/authorize?"+ params.toString();
   location.href = url;
 
-      
-
-  // $.ajax({
-  //     method: "GET",
-  //     url: "https://accounts.spotify.com/authorize?"+ params.toString(),
-  //     headers: {"Accept": "application/json"}
-  // })
-  // .done(function(result){
-  //     console.log(JSON.stringify(result));
-  // });
 }
