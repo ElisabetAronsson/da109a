@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8 ">
+    <meta name="author" content="Hugo Lindstedt">
+    <meta name="description" content="Learning HTML">
+    <title>My First Web Page</title>
+    <link rel="icon" href="HTML5_Badge.svg" type="image/x-icon">
+    <link rel="stylesheet" href="../css/main.css" type="text/css">
+</head>
+
+<body>
+    <h1>Hello</h1>
+    <script>
+        console.log("!")
+        fetch('http://localhost:7070/v1/artists/following')
+            .then(response => response.json())
+            .then(out =>
+            console.log(out))
+    </script>
+
+</body>
+</html>
