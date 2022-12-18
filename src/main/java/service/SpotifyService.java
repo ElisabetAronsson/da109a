@@ -1,6 +1,7 @@
 package service;
 
 import entity.spotify.Example;
+import io.javalin.http.Context;
 
 import java.util.ArrayList;
 import java.util.List;

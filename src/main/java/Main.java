@@ -13,11 +13,12 @@ public class Main {
             javalinConfig.staticFiles.add("/public/script/", Location.CLASSPATH);
                 })
                 .get("/", ctx -> ctx.redirect("index.html"))
-                .start(7070);
+                .get("/callback", ctx -> ctx.redirect("callback.html"))
+                .start(8888);
 
         //API Endpoints
         app.routes(() -> {
-           path("/v1/artists/following", () -> get(controller::getFollowing));
+           path("/v1/artists/following", () -> get(Controller::getFollowing));
         });
     }
 }
