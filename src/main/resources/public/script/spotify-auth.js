@@ -25,7 +25,6 @@ function getToken(){
         console.log(searchObject)
        
 
-        
         };
     };
     

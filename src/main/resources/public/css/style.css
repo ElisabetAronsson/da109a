@@ -79,7 +79,7 @@ input:focus-visible, select:focus-visible {
     outline: none;
 }
 
-input:-internal-autofill-selected {
+input:valid, input:invalid{
     background-color: #adf6f2;
 }
 
