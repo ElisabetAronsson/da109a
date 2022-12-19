@@ -3,10 +3,21 @@ function getToken(){
     let token = params.get('access_token');
     window.localStorage.setItem('access_token',token)
 
-    console.log(token)
-    return token 
-    
+    const endpoint = "http://localhost:8888/v1/artists/following";
+
+    function getData(){
+        const response =fetch(endpoint, {
+            method : "GET",
+            headers: {
+                'authorization': 'Bearer '+ token 
+            }
+        });                          
+        const artists = response.json();             
+        console.log(artists)            
+        return artists; 
+        };
     }
+
 
 function login(){
     let scope = 'user-follow-read';
@@ -18,7 +29,3 @@ function login(){
     window.location.href = `https://accounts.spotify.com/authorize?client_id=${clientID}&redirect_uri=${redirect_uir}&response_type=${response_type}&scope=${scope}`;
  
 }
-
-
-
-
