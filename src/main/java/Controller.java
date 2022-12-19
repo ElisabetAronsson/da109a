@@ -25,4 +25,16 @@ public class Controller {
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
         context.result(getResponse.body());
     }
+
+    public static void getConcerts(Context context) throws URISyntaxException, IOException, InterruptedException{
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(new URI("https://api.seatgeek.com/2/events?performers.slug=" + "sza" + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
+                .header("Content-Type","application/json")
+                .build();
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
+        context.result(getResponse.body());
+
+    }
 }

@@ -19,6 +19,7 @@ public class Main {
         //API Endpoints
         app.routes(() -> {
            path("/v1/artists/following", () -> get(Controller::getFollowing));
+           path("/2/events/", () -> get(Controller::getConcerts));
         });
     }
 }
