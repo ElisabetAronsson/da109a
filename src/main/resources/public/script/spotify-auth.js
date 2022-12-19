@@ -3,7 +3,7 @@ function getToken(){
     let token = params.get('access_token');
     window.localStorage.setItem('access_token',token)
 
-    
+    console.log(token)
     return token 
     
     }
