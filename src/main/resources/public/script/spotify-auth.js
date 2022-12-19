@@ -27,7 +27,6 @@ function getToken(){
         
         const artists = await response.json();
         console.log(artists)
-        return artists;
     }
     
     }
