@@ -12,7 +12,8 @@ $(document).ready(function(){
 })
 
 function getToken(){
-    let params = (new URL(location.href.replace('#','?'))).searchParams;
+    return function (){
+        let params = (new URL(location.href.replace('#','?'))).searchParams;
     let token = params.get('access_token');
     window.localStorage.setItem('access_token',token)
 
@@ -27,6 +28,8 @@ function getToken(){
         const artists = await response.json();
         console.log(artists)
         return artists;
+    }
+    
     }
 
 }
