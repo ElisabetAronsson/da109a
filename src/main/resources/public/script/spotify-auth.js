@@ -6,9 +6,9 @@ function getToken(){
     const endpoint = "http://localhost:8888/v1/artists/following";
     console.log(endpoint);
    
-    getData()
+    getData(endpoint)
 
-    function getData(){
+    function getData(endpoint){
         const response =fetch(endpoint, {
             method : "GET",
             headers: {
