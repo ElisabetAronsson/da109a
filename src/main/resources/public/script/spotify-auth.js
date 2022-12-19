@@ -1,9 +1,6 @@
 function getToken(){
-    let searchLocation= getLocation();
-    let searchObj = {};
-
-    searchObj.location=searchLocation
-    
+    let searchObject ={};
+    searchObject.location=$("locationForm inut[name=location]").val()
     
     let params = (new URL(location.href.replace('#','?'))).searchParams;
     let token = params.get('access_token');
@@ -23,16 +20,15 @@ function getToken(){
 
         const artists = response.json();    
 
-        searchObj.artists=artists
+        searchObject.artists=artists
 
-        console.log(searchObj)
+        console.log(searchObject)
        
-        };
-    }
 
-function getLocation(){
-    return $("locationForm inut[name=location]").val();
-}
+        
+        };
+    };
+    
 
 
 function login(){

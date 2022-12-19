@@ -14,7 +14,7 @@ public class Main {
                 })
                 .get("/", ctx -> ctx.redirect("index.html"))
                 .get("/callback", ctx -> ctx.redirect("callback.html"))
-                .get("/listArtists", ctx -> ctx.redirect("listArtists.html"))
+                .get("/location", ctx -> ctx.redirect("location.html"))
                 .start(8888);
 
         //API Endpoints

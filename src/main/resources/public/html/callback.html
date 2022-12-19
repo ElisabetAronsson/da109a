@@ -13,7 +13,7 @@
     <script src="../script/spotify-auth.js" type="text/javascript"></script>
 </head>
 
-<body onload="getToken()" class="imageBackground">
+<body class="imageBackground">
     <div id="searchBox">
         <div class="titleBox">
             <h1 id="h1Big">Event Tracker</h1>
@@ -21,7 +21,7 @@
         <form id="locationForm">
             <label for="location">Plats för eventet</label>
             <input type="text" name="location" id="location">
-            <button type="button" id="locationButton">SÖK<button>
+            <button onclick="getToken()" type="button" id="locationButton">SÖK<button>
         </form>
 
     </div>
