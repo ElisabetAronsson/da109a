@@ -18,9 +18,11 @@ function getToken(){
             }
         });   
 
-        const artists = response.json();    
+        const artists = response;    
 
         searchObject.artists=artists
+
+        searchObject=JSON.stringify(searchObject)
 
         console.log(searchObject)
        
