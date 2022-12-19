@@ -12,22 +12,21 @@ $(document).ready(function(){
 })
 
 function getToken(){
-    return function (){
         let params = (new URL(location.href.replace('#','?'))).searchParams;
     let token = params.get('access_token');
     window.localStorage.setItem('access_token',token)
 
-    async function getData(url = '') {
-        const response = await fetch(url, {
+    function getData(url = '') {
+        const response =  fetch(url, {
             method : 'GET',
             headers: {
                 'authorization': 'Bearer '+ token
             }
         });
         
-        const artists = await response.json();
+        const artists =  response.json();
         console.log(artists)
-    }
+        return artists
     
     }
 
