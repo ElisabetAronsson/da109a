@@ -57,8 +57,6 @@ form {
     padding: 30px;   
 }
 
- 
-
 label{
     color: #FF20CE;
     text-align: center;
@@ -107,6 +105,12 @@ input:focus-visible, select:focus-visible {
 button:hover{
     border-radius: 10px;
     color:#adf6f2;
+}
+/*listArtists.html*/
+#tableBox{
+    background-color: black;
+    width: 80%;
+    height: 100vh;
 }
 
 /*eventAndArtist.html*/

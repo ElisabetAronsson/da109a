@@ -22,12 +22,11 @@ function getToken(){
 
         searchObject.artists=artists
 
-        console.log(searchObject)
+        return searchObject
        
         };
     };
     
-
 
 function login(){
     let scope = 'user-follow-read';
