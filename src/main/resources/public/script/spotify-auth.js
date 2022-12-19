@@ -6,10 +6,9 @@ function getToken(){
     console.log(params)
     console.log(token)
     console.log(hej)
-        return artists
     
     }
-    
+
 function login(){
     let scope = 'user-follow-read';
     let clientID = '7a6d44b7b4c7435f9ed4340b9e613395';
