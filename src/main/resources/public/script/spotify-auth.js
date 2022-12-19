@@ -8,8 +8,8 @@ function getToken(){
    
     getData(endpoint)
 
-    function getData(endpoint=""){
-        const response =fetch(endpoint, {
+    async function getData(endpoint=""){
+        const response = await fetch(endpoint, {
             method : "GET",
             headers: {
                 'authorization': 'Bearer '+ token 
