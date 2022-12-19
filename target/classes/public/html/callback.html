@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input type = "button" onclick = "getData('http://localhost:8888/v1/artists/following')" value = "Display"> 
+    <script>
+        let params = (new URL(location.href.replace('#','?'))).searchParams;
+        let token = params.get('access_token');
+        window.localStorage.setItem('access_token',token)
+
+        async function getData(url = '') {
+            const response = await fetch(url, {
+                method : 'GET',
+                headers: {
+                    'authorization': 'Bearer '+ token
+                }
+            });
+            
+            const artists = await response.json();
+            console.log(artists)
+            return artists;
+        }
+
+    
+
+    </script>
+</body>
+</html>
