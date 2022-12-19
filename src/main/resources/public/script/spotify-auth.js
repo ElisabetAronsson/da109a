@@ -7,7 +7,6 @@ function getToken(){
     window.localStorage.setItem('access_token',token)
 
     const endpoint = "http://localhost:8888/v1/artists/following";
-    console.log(endpoint);
    
     getData(endpoint)
 
@@ -19,7 +18,8 @@ function getToken(){
             }
         });   
 
-        const artists = response.json();             
+        const artists = response.json();    
+                 
         searchObject.artists=artists
 
         console.log(searchObject)
