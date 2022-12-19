@@ -6,10 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My First Web Page</title>
     <link rel="icon" href="HTML5_Badge.svg" type="image/x-icon">
-    <link rel="stylesheet" href="../css/main.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
 </head>
 
-<body onload="login()">
+<body class="imageBackground">
+    <div id="searchBox">
+        <div class="titleBox">
+            <h1 id="h1Big">Event Tracker</h1>
+        </div>
+        <form id="searchMyEvent"name="searchMyEvent">
+            <button onclick="login()" id="searchButton">Logga in via Spotify</button>
+        </form>
+
+    </div>
     <script src="../script/spotify-auth.js" type="text/javascript"></script>
 </body>
 </html>
