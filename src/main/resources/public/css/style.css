@@ -47,7 +47,7 @@ body {
     background: linear-gradient(90deg,#FF20CE 4.08%, #9E00FF 46.17%, #10d1c4 88.27%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    padding: 0 20px;
+    padding: 0 30px;
 }
 
 form {
