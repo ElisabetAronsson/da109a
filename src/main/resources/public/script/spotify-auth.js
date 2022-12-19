@@ -1,11 +1,10 @@
 function getToken(){
     let params = (new URL(location.href.replace('#','?'))).searchParams;
     let token = params.get('access_token');
-    let hej = window.localStorage.setItem('access_token',token)
+    window.localStorage.setItem('access_token',token)
 
-    console.log(params)
-    console.log(token)
-    console.log(hej)
+    
+    return token 
     
     }
 
