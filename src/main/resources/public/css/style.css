@@ -79,9 +79,6 @@ input:focus-visible, select:focus-visible {
     outline: none;
 }
 
-input:valid, input:invalid{
-    background-color: #adf6f2;
-}
 
 #searchButton {
     margin-bottom: 30px;
