@@ -8,7 +8,7 @@ function getToken(){
    
     getData(endpoint)
 
-    function getData(endpoint){
+    function getData(endpoint=""){
         const response =fetch(endpoint, {
             method : "GET",
             headers: {
