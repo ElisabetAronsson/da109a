@@ -1,6 +1,6 @@
 function getToken(){
     let searchObject ={};
-    searchObject.location=$("#locationForm input[name=location]").val()
+    searchObject.location=$("locationForm input[name=location]").val()
     
     let params = (new URL(location.href.replace('#','?'))).searchParams;
     let token = params.get('access_token');
@@ -18,11 +18,9 @@ function getToken(){
             }
         });   
 
-        const artists = response;    
+        const artists = response.json();    
 
         searchObject.artists=artists
-
-        searchObject=JSON.stringify(searchObject)
 
         console.log(searchObject)
        
