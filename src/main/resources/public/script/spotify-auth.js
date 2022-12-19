@@ -14,8 +14,7 @@ function getToken(){
             headers: {
                 'authorization': 'Bearer '+ token 
             }
-        });   
-        console.log(response)                       
+        });                         
         const artists = response.json();             
         console.log(artists)            
         return artists; 
