@@ -13,7 +13,7 @@ public class Main {
             javalinConfig.staticFiles.add("/public/script/", Location.CLASSPATH);
                 })
                 .get("/", ctx -> ctx.redirect("index.html"))
-                .get("/callback", ctx -> ctx.redirect("index.html"))
+                
                 .get("/listArtists", ctx -> ctx.redirect("listArtists.html"))
                 .start(8888);
 
