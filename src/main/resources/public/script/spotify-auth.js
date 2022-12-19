@@ -14,10 +14,11 @@ function getToken(){
         const artists =  response.json();
         console.log(artists)
         return artists
+    
     }
 }
 
-function hej() {
+$(document).ready(function(){
     let scope = 'user-follow-read';
     let clientID = '7a6d44b7b4c7435f9ed4340b9e613395';
     let redirect_uir = 'http://localhost:8888/callback';
@@ -28,7 +29,7 @@ function hej() {
 
     let token = getToken();
    
-}
+})
 
 
 
