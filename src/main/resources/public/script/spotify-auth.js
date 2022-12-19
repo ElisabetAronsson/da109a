@@ -4,6 +4,7 @@ function getToken(){
     window.localStorage.setItem('access_token',token)
 
     const endpoint = "http://localhost:8888/v1/artists/following";
+    console.log(endpoint);
 
     function getData(){
         const response =fetch(endpoint, {
