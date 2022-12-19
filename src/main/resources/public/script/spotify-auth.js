@@ -19,9 +19,9 @@ function getToken(){
         
         let searchObject ={};
         searchObject.location=$("locationForm inut[name=location]").val()
-        searchObject.artists=artists.val()
+        searchObject.artists=artists
         console.log(searchObject)
-        
+
         return artists; 
         };
     }
