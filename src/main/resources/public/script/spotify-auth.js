@@ -16,7 +16,12 @@ function getToken(){
             }
         });                         
         const artists = response.json();             
-        console.log(artists)            
+        
+        let searchObject ={};
+        searchObject.location=$("locationForm inut[name=location]").val()
+        searchObject.artists=artists.val()
+        console.log(searchObject)
+        
         return artists; 
         };
     }

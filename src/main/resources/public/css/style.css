@@ -47,13 +47,53 @@ body {
     background: linear-gradient(90deg,#FF20CE 4.08%, #9E00FF 46.17%, #10d1c4 88.27%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    padding: 0 30px;
+    padding: 0 20px;
 }
 
+form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;   
+}
 
-button {
+ 
+
+label{
+    color: #FF20CE;
+    text-align: center;
+    padding: 5px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+input{
+    padding: 5px;
+    border: none;
+    width: 250px;
+    background-color: #adf6f2;
+    font-weight: bold;
+}
+
+input:focus-visible, select:focus-visible {
+    outline: none;
+}
+
+#searchButton {
     margin-bottom: 30px;
     width: 220px;
+    padding: 10px;
+    background-color:#FF20CE;
+    border: none;
+    margin: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+#locationButton{
+    margin-bottom: 30px;
+    width: 80px;
     padding: 10px;
     background-color:#FF20CE;
     border: none;
@@ -139,6 +179,11 @@ h3 {
 
 
 @media screen and (max-width: 850px) {
+
+
+    #searchBox {
+        height: 80%;
+    }
 
     #container {
         flex-direction: column;
