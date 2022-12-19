@@ -7,23 +7,29 @@ $(document).ready(function(){
     //window.open(`https://accounts.spotify.com/authorize?client_id=${clientID}&redirect_uri=${redirect_uir}&response_type=${response_type}&scope=${scope}`,'_self')
     window.location.href = `https://accounts.spotify.com/authorize?client_id=${clientID}&redirect_uri=${redirect_uir}&response_type=${response_type}&scope=${scope}`;
 
-    let params = (new URL(location.href.replace('#','?'))).searchParams;
-        let token = params.get('access_token');
-        window.localStorage.setItem('access_token',token)
-
-        async function getData(url = '') {
-            const response = await fetch(url, {
-                method : 'GET',
-                headers: {
-                    'authorization': 'Bearer '+ token
-                }
-            });
-            
-            const artists = await response.json();
-            console.log(artists)
-            return artists;
-        }
+    let token = getToken();
+   
 })
+
+function getToken(){
+    let params = (new URL(location.href.replace('#','?'))).searchParams;
+    let token = params.get('access_token');
+    window.localStorage.setItem('access_token',token)
+
+    async function getData(url = '') {
+        const response = await fetch(url, {
+            method : 'GET',
+            headers: {
+                'authorization': 'Bearer '+ token
+            }
+        });
+        
+        const artists = await response.json();
+        console.log(artists)
+        return artists;
+    }
+
+}
 
 
 
