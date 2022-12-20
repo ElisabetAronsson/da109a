@@ -11,7 +11,8 @@ import java.net.http.HttpResponse;
 
 
 public class Controller {
-
+    static final String BASE_URL = "https://api.spotify.com/v1/";
+    static final int LIMIT = 10;
     static final ObjectMapper mapper = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
@@ -19,7 +20,7 @@ public class Controller {
 
         String token = context.req().getHeader("Authorization");
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(new URI("https://api.spotify.com/v1/me/following?type=artist&limit=2"))
+                .uri(URI.create(BASE_URL + "me/following?type=artist&limit=" + LIMIT))
                 .header("Content-Type","application/json")
                 .header("Authorization", token)
                 .build();
@@ -31,8 +32,11 @@ public class Controller {
     }
 
     public static void getConcerts(Context context) throws URISyntaxException, IOException, InterruptedException{
+        String pathId = context.pathParam("id");
+        String artistName = pathId.replace(' ', '+');
+
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(new URI("https://api.seatgeek.com/2/events?performers.slug=" + "sza" + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
+                .uri(new URI("https://api.seatgeek.com/2/events?performers.slug=" + artistName + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
                 .header("Content-Type","application/json")
                 .build();
 
@@ -46,13 +50,19 @@ public class Controller {
 
     }
 
-    public static void fetchList (Context context) throws URISyntaxException, IOException, InterruptedException{
-        //1 lista över alla artister och event
-        //2 lägg delar av denna data i en ny lista
-    }
+    public static void searchArtist(Context context) throws URISyntaxException, IOException, InterruptedException {
 
-    public static void fetchEvent (Context context) throws URISyntaxException, IOException, InterruptedException {
-        //1 enskild event med all information utifrån id
-    }
+        String searchParameter = context.pathParam("name").replaceAll(" ","%20");
+        HttpRequest postRequest = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL+"search?q=artist:" + searchParameter +"&type=artist&limit=1"))
+                .header("Content-Type","application/json")
+                .header("Authorization", context.req().getHeader("Authorization"))
+                .build();
 
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpResponse<String> postResponse = httpClient.send(postRequest, HttpResponse.BodyHandlers.ofString());
+        Example itemsList = mapper.readValue(postResponse.body(), Example.class);
+        context.result(mapper.writeValueAsString(itemsList));
+
+    }
 }
