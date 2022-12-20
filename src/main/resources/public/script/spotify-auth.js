@@ -10,7 +10,7 @@ function getToken(){
    
     getData(endpoint)
 
-    async function getData(endpoint=""){
+    async function getData(endpoint){
         const response = await fetch(endpoint, {
             method : "GET",
             headers: {
@@ -21,12 +21,23 @@ function getToken(){
         const artists = response.json();    
 
         searchObject.artists=artists
-        console.log(searchObject)
-        location.href = "listArtists.html";
-        return searchObject
-       
-        };
+        postData(searchObject)
+        
     };
+};
+
+function postData(data){
+    $.ajax({
+        method: "POST",
+        url: 'http://localhost:8888',
+        data: JSON.stringify(data),
+        headers: {"Accept": "application/json"}
+      })
+      .done(function(result) {
+        //location.href = "listArtists.html";
+      });
+    
+}
     
 
 function login(){
