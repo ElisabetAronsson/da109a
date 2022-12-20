@@ -20,7 +20,7 @@ function getToken(){
 
         const artists = response.json();    
         searchObject.artists=artists
-    
+        console.log(artists)
         postData(searchObject)
         
     };

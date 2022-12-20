@@ -22,9 +22,7 @@ public class Controller {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        System.out.println(getResponse.body());
         context.result(getResponse.body());
-
     }
 
     public static void fetchData (Context context) throws URISyntaxException, IOException, InterruptedException {
