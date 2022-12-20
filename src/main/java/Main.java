@@ -1,10 +1,8 @@
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import static io.javalin.apibuilder.ApiBuilder.get;
+import static io.javalin.apibuilder.ApiBuilder.post;
 import static io.javalin.apibuilder.ApiBuilder.path;
 
 public class Main {
@@ -18,22 +16,14 @@ public class Main {
                 })
                 .get("/", ctx -> ctx.redirect("index.html"))
                 .get("/callback", ctx -> ctx.redirect("callback.html"))
-                .post("/callback", ctx -> {runner.data(ctx)})
                 .get("/listArtists", ctx -> ctx.redirect("listArtists.html"))
                 .start(8888);
 
         //API Endpoints
         app.routes(() -> {
            path("/v1/artists/following", () -> get(Controller::getFollowing));
+           path("/v1/api/postData", () -> post(Controller::fetchData));
         });
     }
 
-    private void data(context ctx) {
-
-        data=gson.fromJson(ctx.body());
-        try(Scanner scan=new Scanner(System.in)){
-
-            //In Java, write to console
-              System.out.println(data);
-    }
 }
