@@ -1,9 +1,20 @@
 package entity.seatgeek;
 
 public class Event {
-    String short_title;
-    String datetine_utc;
-    Venue venue;
+    private String id;
+    private String short_title;
+    private String datetine_utc;
+    private Venue venue;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
 
     public String getShort_title() {
         return short_title;

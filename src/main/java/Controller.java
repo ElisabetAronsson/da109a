@@ -46,8 +46,18 @@ public class Controller {
         context.result(mapper.writeValueAsString(conserts));
     }
 
-    public static void getSpecificConsert(Context context) throws URISyntaxException, IOException, InterruptedException{
+    public static void getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
+        String concertId = context.pathParam("concert_id");
 
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(new URI("https://api.seatgeek.com/2/events/" + concertId))
+                .header("Content-Type","application/json")
+                .build();
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
+        Event concert = mapper.readValue(getResponse.body(), Event.class);
+        context.result(mapper.writeValueAsString(concert));
     }
 
     public static void fetchData (Context context) throws URISyntaxException, IOException, InterruptedException {
