@@ -30,7 +30,7 @@ public class Main {
 
     private void data(context ctx) {
 
-        data=gson.fromJson(ctx.body())
+        data=gson.fromJson(ctx.body());
         try(Scanner scan=new Scanner(System.in)){
 
             //In Java, write to console
