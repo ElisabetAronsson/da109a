@@ -1,7 +1,30 @@
+function fetchEvent(details){
+    return function(){
+        location.href = "eventAndArtist.html";
+
+        $.ajax({
+            url:details,
+            headers:{"Accept": "application/json"}
+        })
+        .done(function(data){
+            listArtists=$("#artistsList");
+    
+            for(i=0; i<data.length; i++){
+                html="<li id='event_" + i + "'>" + data[i]["name"] + "</li>" // key:n kan behöva ändras
+                listEventAndArtists.append(html);
+    
+                $("#artist_" + i).click(fetchEvent(data[i]["details"]));
+            }
+          
+        });
+    }
+
+}
+
 function fetchInfo(details){
     return function(){
         location.href = "eventAndArtist.html";
-        
+
         $.ajax({
             url:details,
             headers:{"Accept": "application/json"}
@@ -26,13 +49,13 @@ $(document).ready(function(){
         headers: {"Accept": "application/json"}
     })
     .done(function(data){
-        listArtists=$("#artists");
+        listArtists=$("#artistsList");
 
         for(i=0; i<data.length; i++){
             html="<li id='artist_" + i + "'>" + data[i]["name"] + "</li>" // key:n kan behöva ändras
             listEventAndArtists.append(html);
 
-            $("#artist_" + i).click(fetchInfo(data[i]["details"]));
+            $("#artist_" + i).click(fetchEvent(data[i]["details"]));
         }
     });
 });
