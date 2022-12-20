@@ -27,6 +27,16 @@ public class Main {
            //path("/v1/api/artists", () -> get(Controller::fetchList));
            //path("/v1/api/artists{id}" , () -> get (Controller::fetchEvent));
            path("/v1/api/artists/{name}", () -> post(Controller::searchArtist));
+
+           path("api/v1/artists/", () -> get(Controller::getFollowing));
+           path("api/v1/artists/", () -> get(Controller::getFollowing));
+           path("api/v1/artists/:id/concerts", () -> get(Controller::getConcertsOfArtist));
+           path("api/v1/artists/:artist_id/concerts/:concert_id", () -> get(Controller::getSpecificConcert));
+
+           //path("/v1/api/postData", () -> post(Controller::fetchData));
+           //path("/v1/api/artists", () -> get(Controller::fetchList));
+           //path("/v1/api/artists{id}" , () -> get (Controller::fetchEvent));
+            
         });
     }
 
