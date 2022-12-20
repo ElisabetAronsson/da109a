@@ -31,7 +31,7 @@ public class Controller {
     }
 
     public static void fetchData (Context context) throws URISyntaxException, IOException, InterruptedException {
-        var data = context.body(); // här finns data om platsen som sökts på och artisterna från spotify
+        var data = context.body(); // här finns data om artisterna från spotify
 
     }
 

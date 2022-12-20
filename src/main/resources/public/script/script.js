@@ -1,32 +1,31 @@
-function fetchEvent(details){
+function fetchEvent(artistName){
     return function(){
-        location.href = "eventAndArtist.html";
+        location.href = "listEvent.html";
 
         $.ajax({
-            url:details,
+            url:"http://localhost:8888/v1/api/artists/"+ artistName +"/concerts",
             headers:{"Accept": "application/json"}
         })
         .done(function(data){
-            listArtists=$("#artistsList");
-    
+            listEvent=$("#eventsList");
+            $("#artistName").text(data["artistName"]); // key:n kan behöva ändras
+
             for(i=0; i<data.length; i++){
-                html="<li id='event_" + i + "'>" + data[i]["name"] + "</li>" // key:n kan behöva ändras
-                listEventAndArtists.append(html);
+                html="<li id='event_" + i + "'>" + data[i]["eventName"] + "</li>" // key:n kan behöva ändras
+                listEvent.append(html);
     
-                $("#artist_" + i).click(fetchEvent(data[i]["details"]));
+                $("#event_" + i).click(fetchInfo(artistName, data[i]["eventName"]));
             }
-          
         });
     }
-
 }
 
-function fetchInfo(details){
+function fetchInfo(artistName, eventName){
     return function(){
         location.href = "eventAndArtist.html";
 
         $.ajax({
-            url:details,
+            url: "http://localhost:8888/api/v1/artists/ "+ artistName + "/concerts/" + eventName,
             headers:{"Accept": "application/json"}
         })
         .done(function(data){
@@ -41,7 +40,7 @@ function fetchInfo(details){
             $("#eventScen").text(data["eventScen"]);// key:n kan behöva ändras
         });
     }
-};
+}
 
 $(document).ready(function(){
     $.ajax({
@@ -52,10 +51,13 @@ $(document).ready(function(){
         listArtists=$("#artistsList");
 
         for(i=0; i<data.length; i++){
-            html="<li id='artist_" + i + "'>" + data[i]["name"] + "</li>" // key:n kan behöva ändras
-            listEventAndArtists.append(html);
+            html="<li id='artist_" + i + "'> <div> <img src='" + data[i]["artistImage"] + "'> <p>" + data[i]["artistName"] + "</p> </div> </li>" // key:n kan behöva ändras
+            listArtists.append(html);
 
-            $("#artist_" + i).click(fetchEvent(data[i]["details"]));
+            $("#artist_" + i).click(fetchEvent(data[i]["artistName"]));
         }
     });
 });
+
+
+
