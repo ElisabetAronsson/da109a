@@ -12,6 +12,7 @@ import java.net.http.HttpResponse;
 
 public class Controller {
     static final String BASE_URL = "https://api.spotify.com/v1/";
+    static final int LIMIT = 10;
     static final ObjectMapper mapper = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
@@ -19,7 +20,7 @@ public class Controller {
 
         String token = context.req().getHeader("Authorization");
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL + "me/following?type=artist&limit=2"))
+                .uri(URI.create(BASE_URL + "me/following?type=artist&limit=" + LIMIT))
                 .header("Content-Type","application/json")
                 .header("Authorization", token)
                 .build();
