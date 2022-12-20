@@ -1,4 +1,4 @@
-import com.google.gson.Gson;
+
 import io.javalin.http.Context;
 
 import java.io.IOException;
@@ -10,7 +10,6 @@ import java.net.http.HttpResponse;
 
 public class Controller {
 
-    static final Gson gson = new Gson();
 
     public static void getFollowing(Context context) throws URISyntaxException, IOException, InterruptedException {
 
@@ -24,5 +23,10 @@ public class Controller {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
         context.result(getResponse.body());
+    }
+
+    public static void fetchData (Context context) throws URISyntaxException, IOException, InterruptedException {
+        var data = context.body(); // här finns data om platsen som sökts på och artisterna från spotify
+       
     }
 }

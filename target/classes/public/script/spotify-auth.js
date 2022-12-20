@@ -5,6 +5,7 @@ function getToken(){
     let params = (new URL(location.href.replace('#','?'))).searchParams;
     let token = params.get('access_token');
     window.localStorage.setItem('access_token',token)
+    console.log("hej")
 
     const endpoint = "http://localhost:8888/v1/artists/following";
    
@@ -20,6 +21,7 @@ function getToken(){
 
         const artists = await response.json();    
         searchObject.artists=artists
+        console.log(searchObject)
         postData(searchObject)
         
     };
