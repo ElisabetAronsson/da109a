@@ -1,10 +1,12 @@
 function getToken(){
+    let searchObject ={};
+    searchObject.location=$("#locationForm input[name=location]").val()
+    
     let params = (new URL(location.href.replace('#','?'))).searchParams;
     let token = params.get('access_token');
     window.localStorage.setItem('access_token',token)
 
     const endpoint = "http://localhost:8888/v1/artists/following";
-    console.log(endpoint);
    
     getData(endpoint)
 
@@ -14,13 +16,18 @@ function getToken(){
             headers: {
                 'authorization': 'Bearer '+ token 
             }
-        });                         
-        const artists = response.json();             
-        console.log(artists)            
-        return artists; 
-        };
-    }
+        });   
 
+        const artists = response.json();    
+
+        searchObject.artists=artists
+        console.log(searchObject)
+        location.href = "listArtists.html";
+        return searchObject
+       
+        };
+    };
+    
 
 function login(){
     let scope = 'user-follow-read';
