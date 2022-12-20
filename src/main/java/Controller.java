@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import entity.seatgeek.Event;
 import entity.spotify.Example;
 import io.javalin.http.Context;
 import java.io.IOException;
@@ -30,7 +31,7 @@ public class Controller {
         context.result(mapper.writeValueAsString(itemsList));
     }
 
-    public static void getConcerts(Context context) throws URISyntaxException, IOException, InterruptedException{
+    public static void getConcertsOfArtist(Context context) throws URISyntaxException, IOException, InterruptedException{
         String pathId = context.pathParam("id");
         String artistName = pathId.replace(' ', '+');
 
@@ -41,13 +42,17 @@ public class Controller {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        context.result(getResponse.body());
+        Event conserts = mapper.readValue(getResponse.body(), Event.class);
+        context.result(mapper.writeValueAsString(conserts));
+    }
+
+    public static void getSpecificConsert(Context context) throws URISyntaxException, IOException, InterruptedException{
+
     }
 
     public static void fetchData (Context context) throws URISyntaxException, IOException, InterruptedException {
         var data = context.body(); // här finns data om platsen som sökts på och artisterna från spotify
 
     }
-
 
 }
