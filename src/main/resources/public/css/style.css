@@ -81,15 +81,23 @@ button:hover{
     cursor: pointer;
 }
 
-ul, li div{
+#artistsList div{
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 20px;
+    margin: 20px;
+    width: 200px;
+    border-radius: 10px;
+    background-color: rgb(26 26 26);
 }
 
-li {
-    padding: 50px;
+#artistsList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
+
 
 /*eventAndArtist.html*/
 
@@ -163,6 +171,7 @@ h4{
     text-transform: uppercase;
     color: #FF20CE;
     cursor: pointer;
+    text-align: center;
 }
 
 
