@@ -19,7 +19,7 @@ public class Controller {
 
         String token = context.req().getHeader("Authorization");
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(new URI("https://api.spotify.com/v1/me/following?type=artist&limit=2"))
+                .uri(new URI("https://api.spotify.com/v1/me/following?type=artist&limit=10"))
                 .header("Content-Type","application/json")
                 .header("Authorization", token)
                 .build();
