@@ -19,8 +19,7 @@ public class Main {
 
         //API Endpoints
         app.routes(() -> {
-           path("/v1/api/artists/following", () -> get(Controller::getFollowing));
-           path("/v1/api/artists", () -> get(Controller::fetchArtists)); //prel. metod
+           path("/v1/api/artists", () -> get(Controller::getFollowing));
            path("/v1/api/artists/{id}/concerts" , () -> get (Controller::fetchConcerts)); //prel. metod
            path("/v1/api/artists/{id}/concerts/{id}", () -> get (Controller::fetchArtistConcert)); //prel. metod
         });

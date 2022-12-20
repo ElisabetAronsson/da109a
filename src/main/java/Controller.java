@@ -30,4 +30,15 @@ public class Controller {
         context.result(mapper.writeValueAsString(itemsList));
     }
 
+    public static void fetchConcerts(Context context) throws URISyntaxException, IOException, InterruptedException{
+        //hämtar koncerter från event api:t
+    }
+
+    public static void fetchArtistConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
+        //hämtar en specifik koncert av en artist
+    }
+
+
+
+
 }
