@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e30615d-9264-47e6-90fd-aef7e9eaeddb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/entity/seatgeek/Event.java" afterDir="false" />
+    <list default="true" id="1e30615d-9264-47e6-90fd-aef7e9eaeddb" name="Changes" comment="uri formatting">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/html/callback.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/html/callback.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/html/callback.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/public/html/callback.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +22,17 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="ami2" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$MAVEN_REPOSITORY$/io/javalin/javalin/5.2.0/javalin-5.2.0.jar!/io/javalin/Javalin.class" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/io/javalin/javalin/5.2.0/javalin-5.2.0-sources.jar!/io/javalin/Javalin.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="jar://$MAVEN_REPOSITORY$/io/javalin/javalin/5.2.0/javalin-5.2.0.jar!/io/javalin/http/staticfiles/Location.class" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="2J8CFHUsjTZoRR0W6oFBSDGpV6E" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -62,6 +67,13 @@
       <option name="presentableId" value="Default" />
       <updated>1671450219416</updated>
     </task>
+    <task id="LOCAL−00001" summary="uri formatting">
+      <created>1671543974894</created>
+      <option name="number" value="LOCAL−00001" />
+      <option name="presentableId" value="LOCAL−00001" />
+      <updated>1671543974894</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -74,6 +86,11 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="uri formatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="uri formatting" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
