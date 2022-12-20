@@ -1,13 +1,11 @@
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
-
 import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.post;
 import static io.javalin.apibuilder.ApiBuilder.path;
 
 public class Main {
     public static void main(String[] args) {
-        Main runner=new Main();
         var app = Javalin.create( javalinConfig -> {
             javalinConfig.staticFiles.add("/public/", Location.CLASSPATH);
             javalinConfig.staticFiles.add("/public/css/", Location.CLASSPATH);
