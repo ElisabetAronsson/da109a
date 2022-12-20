@@ -42,8 +42,8 @@ public class Controller {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        Event conserts = mapper.readValue(getResponse.body(), Event.class);
-        context.result(mapper.writeValueAsString(conserts));
+        Event concerts = mapper.readValue(getResponse.body(), Event.class);
+        context.result(mapper.writeValueAsString(concerts));
     }
 
     public static void getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
@@ -62,7 +62,6 @@ public class Controller {
 
     public static void fetchData (Context context) throws URISyntaxException, IOException, InterruptedException {
         var data = context.body(); // här finns data om platsen som sökts på och artisterna från spotify
-
     }
 
 }

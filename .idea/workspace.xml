@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e30615d-9264-47e6-90fd-aef7e9eaeddb" name="Changes" comment="string replacer">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1e30615d-9264-47e6-90fd-aef7e9eaeddb" name="Changes" comment="Ny metod">
       <change beforePath="$PROJECT_DIR$/src/main/java/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/entity/seatgeek/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entity/seatgeek/Event.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +78,13 @@
       <option name="presentableId" value="LOCAL−00002" />
       <updated>1671555332554</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL−00003" summary="Ny metod">
+      <created>1671556430078</created>
+      <option name="number" value="LOCAL−00003" />
+      <option name="presentableId" value="LOCAL−00003" />
+      <updated>1671556430078</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -97,7 +101,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="string replacer" />
-    <option name="LAST_COMMIT_MESSAGE" value="string replacer" />
+    <MESSAGE value="Ny metod" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ny metod" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
