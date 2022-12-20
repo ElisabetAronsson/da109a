@@ -21,8 +21,8 @@ public class Main {
         app.routes(() -> {
            path("/v1/api/artists/following", () -> get(Controller::getFollowing));
            path("/v1/api/postData", () -> post(Controller::fetchData));
-           path("/v1/api/artists", () -> get(controller::fetchList));
-           path("/v1/api/artists{id}" , () -> get (controller::fetchEvent));
+           path("/v1/api/artists", () -> get(Controller::fetchList));
+           path("/v1/api/artists{id}" , () -> get (Controller::fetchEvent));
         });
     }
 
