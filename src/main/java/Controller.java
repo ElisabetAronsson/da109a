@@ -11,7 +11,7 @@ import java.net.http.HttpResponse;
 
 
 public class Controller {
-
+    static final String BASE_URL = "https://api.spotify.com/v1/";
     static final ObjectMapper mapper = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
@@ -19,7 +19,7 @@ public class Controller {
 
         String token = context.req().getHeader("Authorization");
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(new URI("https://api.spotify.com/v1/me/following?type=artist&limit=2"))
+                .uri(URI.create(BASE_URL + "me/following?type=artist&limit=2"))
                 .header("Content-Type","application/json")
                 .header("Authorization", token)
                 .build();
@@ -32,6 +32,22 @@ public class Controller {
 
     public static void fetchData (Context context) throws URISyntaxException, IOException, InterruptedException {
         var data = context.body(); // här finns data om platsen som sökts på och artisterna från spotify
+
+    }
+
+    public static void searchArtist(Context context) throws URISyntaxException, IOException, InterruptedException {
+
+        String searchParameter = context.pathParam("name").replaceAll(" ","%20");
+        HttpRequest postRequest = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL+"search?q=artist:" + searchParameter +"&type=artist&limit=1"))
+                .header("Content-Type","application/json")
+                .header("Authorization", context.req().getHeader("Authorization"))
+                .build();
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpResponse<String> postResponse = httpClient.send(postRequest, HttpResponse.BodyHandlers.ofString());
+        Example itemsList = mapper.readValue(postResponse.body(), Example.class);
+        context.result(mapper.writeValueAsString(itemsList));
 
     }
 }

@@ -21,6 +21,7 @@ public class Main {
         app.routes(() -> {
            path("/v1/api/artists/following", () -> get(Controller::getFollowing));
            path("/v1/api/postData", () -> post(Controller::fetchData));
+           path("/v1/api/artists/{name}", () -> post(Controller::searchArtist));
         });
     }
 
