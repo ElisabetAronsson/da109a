@@ -29,4 +29,8 @@ public class Controller {
         Example itemsList = mapper.readValue(getResponse.body(), Example.class);
         context.result(mapper.writeValueAsString(itemsList));
     }
+
+    public static void getSpecConsert(Context context){
+
+    }
 }

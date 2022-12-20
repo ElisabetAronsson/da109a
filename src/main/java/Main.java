@@ -20,6 +20,7 @@ public class Main {
         //API Endpoints
         app.routes(() -> {
            path("api/v1/artists/", () -> get(Controller::getFollowing));
+           //path("api/v1/artists/{id}/concerts/{id}", () -> get())
         });
     }
 }
