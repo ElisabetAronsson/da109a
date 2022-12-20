@@ -35,6 +35,5 @@ public class Controller {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
         context.result(getResponse.body());
-
     }
 }
