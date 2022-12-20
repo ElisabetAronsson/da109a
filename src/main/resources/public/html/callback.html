@@ -13,17 +13,6 @@
     <script src="../script/spotify-auth.js" type="text/javascript"></script>
 </head>
 
-<body class="imageBackground">
-    <div id="searchBox">
-        <div class="titleBox">
-            <h1 id="h1Big">Event Tracker</h1>
-        </div>
-        <form id="locationForm">
-            <label for="location">Plats för eventet</label>
-            <input type="text" name="location" id="location">
-            <button onclick="getToken()" type="button" id="locationButton">SÖK</button>
-        </form>
-
-    </div>
+<body onload="getToken()">
 </body>
 </html>

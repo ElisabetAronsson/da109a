@@ -50,34 +50,6 @@ body {
     padding: 0 20px;
 }
 
-form {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 30px;   
-}
-
-label{
-    color: #FF20CE;
-    text-align: center;
-    padding: 5px;
-    font-size: 15px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-input{
-    padding: 5px;
-    border: none;
-    width: 250px;
-    background-color: #adf6f2;
-    font-weight: bold;
-}
-
-input:focus-visible, select:focus-visible {
-    outline: none;
-}
-
-
 #searchButton {
     margin-bottom: 30px;
     width: 220px;
@@ -90,17 +62,6 @@ input:focus-visible, select:focus-visible {
     border-radius: 10px;
 }
 
-#locationButton{
-    margin-bottom: 30px;
-    width: 80px;
-    padding: 10px;
-    background-color:#FF20CE;
-    border: none;
-    margin: 60px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    border-radius: 10px;
-}
 
 button:hover{
     border-radius: 10px;

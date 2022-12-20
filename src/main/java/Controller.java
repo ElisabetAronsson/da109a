@@ -35,13 +35,5 @@ public class Controller {
 
     }
 
-    public static void fetchList (Context context) throws URISyntaxException, IOException, InterruptedException{
-        //1 lista över alla artister och event
-        //2 lägg delar av denna data i en ny lista
-    }
-
-    public static void fetchEvent (Context context) throws URISyntaxException, IOException, InterruptedException {
-        //1 enskild event med all information utifrån id
-    }
 
 }
