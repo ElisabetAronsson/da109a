@@ -31,8 +31,11 @@ public class Controller {
     }
 
     public static void getConcerts(Context context) throws URISyntaxException, IOException, InterruptedException{
+        String pathId = context.pathParam("id");
+        String artistName = pathId.replace(' ', '+');
+
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(new URI("https://api.seatgeek.com/2/events?performers.slug=" + "sza" + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
+                .uri(new URI("https://api.seatgeek.com/2/events?performers.slug=" + artistName + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
                 .header("Content-Type","application/json")
                 .build();
 
