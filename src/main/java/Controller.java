@@ -1,11 +1,7 @@
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import entity.spotify.Example;
-import entity.spotify.Items;
 import io.javalin.http.Context;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -30,7 +26,6 @@ public class Controller {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-
         Example itemsList = mapper.readValue(getResponse.body(), Example.class);
         context.result(mapper.writeValueAsString(itemsList));
     }
