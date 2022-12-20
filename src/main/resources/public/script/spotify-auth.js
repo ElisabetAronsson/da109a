@@ -22,6 +22,7 @@ function getToken(){
 
         searchObject.artists=artists
         console.log(searchObject)
+        location.href = "listArtists.html";
         return searchObject
        
         };
