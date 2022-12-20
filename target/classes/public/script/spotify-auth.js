@@ -5,22 +5,23 @@ function getToken(){
     let params = (new URL(location.href.replace('#','?'))).searchParams;
     let token = params.get('access_token');
     window.localStorage.setItem('access_token',token)
+    console.log("hej")
 
     const endpoint = "http://localhost:8888/v1/artists/following";
    
     getData(endpoint)
 
-    async function getData(endpoint){
+    async function getData(endpoint ){
         const response = await fetch(endpoint, {
             method : "GET",
             headers: {
-                'authorization': 'Bearer '+ token 
+                'Authorization': 'Bearer '+ token 
             }
         });   
 
-        const artists = response.json();    
+        const artists = await response.json();    
         searchObject.artists=artists
-        console.log(artists)
+        console.log(searchObject)
         postData(searchObject)
         
     };
