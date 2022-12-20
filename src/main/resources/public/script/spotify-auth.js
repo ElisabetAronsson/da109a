@@ -1,7 +1,4 @@
 function getToken(){
-    let searchObject ={};
-    searchObject.location=$("#locationForm input[name=location]").val()
-    
     let params = (new URL(location.href.replace('#','?'))).searchParams;
     let token = params.get('access_token');
     window.localStorage.setItem('access_token',token)
@@ -19,8 +16,7 @@ function getToken(){
         });   
 
         const artists = await response.json();    
-        searchObject.artists=artists
-        postData(searchObject)
+        postData(artists)
         
     };
 };
