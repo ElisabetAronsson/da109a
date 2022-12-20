@@ -54,7 +54,7 @@ $(document).ready(function(){
         const artists=JSON.parse(data).artists.items
     
         for(i=0; i<artists.length; i++){
-            html="<li id='artist_" + i + "'> <div> <img class='artistListImage' src='" + artists[i]["images"][0]["url"] + "'> <p>" + artists[i]["name"] + "</p> </div> </li>" // key:n kan behöva ändras
+            html="<li id='artist_" + i + "'> <div> <img class='artistListImage' src='" + artists[i]["images"][0]["url"] + "'> <h4>" + artists[i]["name"] + "</h4> </div> </li>" // key:n kan behöva ändras
             listArtists.append(html);
 
             $("#artist_" + i).click(fetchEvent(artists[i]["name"]));

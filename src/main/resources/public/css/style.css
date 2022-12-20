@@ -7,7 +7,6 @@ body {
 
 .imageBackground{
     height: 100vh;
-    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,11 +71,23 @@ button:hover{
     background-color: black;
     max-width: 600px;
     width: 80%;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .artistListImage{
     width: 100px;
+    border: 3px solid #9E00FF;
+}
+
+ul, li div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+li {
+    padding: 50px;
+    cursor: pointer;
 }
 
 /*eventAndArtist.html*/
@@ -117,12 +128,12 @@ section {
 span {
     width: 200px;
     height: 250px;
-    border: 2px solid #9E00FF;
+    border: 3px solid #9E00FF;
     margin: 30px;
 }
 
 #map {
-    border: 2px solid #9E00FF;
+    border: 3px solid #9E00FF;
     width: 300px;
     height: 200px;
     margin: 30px;
@@ -145,7 +156,11 @@ h3 {
     padding:  10px 50px 0 0;
     text-transform: uppercase;
     color: #FF20CE;
+}
 
+h4{
+    text-transform: uppercase;
+    color: #FF20CE;
 }
 
 
