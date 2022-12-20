@@ -75,6 +75,10 @@ button:hover{
     height: 100vh;
 }
 
+.artistListImage{
+    width: 100px;
+}
+
 /*eventAndArtist.html*/
 
 .blackBackground {

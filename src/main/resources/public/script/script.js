@@ -51,11 +51,13 @@ $(document).ready(function(){
     .done(function(data){
         listArtists=$("#artistsList");
 
-        for(i=0; i<data.length; i++){
-            html="<li id='artist_" + i + "'> <div> <img src='" + data[i]["artistImage"] + "'> <p>" + data[i]["artistName"] + "</p> </div> </li>" // key:n kan behöva ändras
+        const artists=JSON.parse(data).artists.items
+    
+        for(i=0; i<artists.length; i++){
+            html="<li id='artist_" + i + "'> <div> <img class='artistListImage' src='" + artists[i]["images"][0]["url"] + "'> <p>" + artists[i]["name"] + "</p> </div> </li>" // key:n kan behöva ändras
             listArtists.append(html);
 
-            $("#artist_" + i).click(fetchEvent(data[i]["artistName"]));
+            $("#artist_" + i).click(fetchEvent(artists[i]["name"]));
         }
     });
 });

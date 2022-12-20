@@ -2,6 +2,7 @@ async function getToken(){
     let params = (new URL(location.href.replace('#','?'))).searchParams;
     let token = params.get('access_token');
     window.localStorage.setItem('access_token',token)   
+    location.href = "listArtists.html";
 }
 
     
