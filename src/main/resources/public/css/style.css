@@ -33,7 +33,7 @@ body {
 #searchBox {
     width: 80%;
     height: 60%;
-    max-width: 800px; 
+    max-width: 600px; 
     background-color: black;
     display: flex;
     flex-direction: column;
@@ -57,41 +57,43 @@ form {
     padding: 30px;   
 }
 
-    #bigInputBox {
-        display: flex;
-        justify-content: space-around;
-    }
+label{
+    color: #FF20CE;
+    text-align: center;
+    padding: 5px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
 
-    .inputBox {
-        margin: 0 50px;
-        display: flex;
-        flex-direction: column;
-    }
+input{
+    padding: 5px;
+    border: none;
+    width: 250px;
+    background-color: #adf6f2;
+    font-weight: bold;
+}
 
-        label{
-            color: #FF20CE;
-            text-align: center;
-            padding: 5px;
-            font-size: 15px;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+input:focus-visible, select:focus-visible {
+    outline: none;
+}
 
-        input{
-            padding: 5px;
-            border: none;
-            width: 250px;
-            background-color: #adf6f2;
-            font-weight: bold;
-        }
 
-        input:focus-visible, select:focus-visible {
-            outline: none;
-        }
+#searchButton {
+    margin-bottom: 30px;
+    width: 220px;
+    padding: 10px;
+    background-color:#FF20CE;
+    border: none;
+    margin: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    border-radius: 10px;
+}
 
-button {
+#locationButton{
     margin-bottom: 30px;
     width: 80px;
-    padding: 7px;
+    padding: 10px;
     background-color:#FF20CE;
     border: none;
     margin: 60px;
@@ -103,6 +105,13 @@ button {
 button:hover{
     border-radius: 10px;
     color:#adf6f2;
+}
+/*listArtists.html*/
+#tableBox{
+    background-color: black;
+    max-width: 600px;
+    width: 80%;
+    height: 100vh;
 }
 
 /*eventAndArtist.html*/
@@ -176,14 +185,7 @@ h3 {
 
 
 @media screen and (max-width: 850px) {
-    #bigInputBox{
-        flex-direction: column;
-        align-items: center;
-    }
 
-    .inputBox {
-        padding: 15px;
-    }
 
     #searchBox {
         height: 80%;

@@ -1,7 +1,7 @@
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
-
 import static io.javalin.apibuilder.ApiBuilder.get;
+import static io.javalin.apibuilder.ApiBuilder.post;
 import static io.javalin.apibuilder.ApiBuilder.path;
 
 public class Main {
@@ -14,12 +14,21 @@ public class Main {
                 })
                 .get("/", ctx -> ctx.redirect("index.html"))
                 .get("/callback", ctx -> ctx.redirect("callback.html"))
+                .get("/listArtists", ctx -> ctx.redirect("listArtists.html"))
                 .start(8888);
 
         //API Endpoints
         app.routes(() -> {
+
            path("/v1/artists/", () -> get(Controller::getFollowing));
            path("/2/events/", () -> get(Controller::getConcerts));
+
+           path("/v1/api/artists/following", () -> get(Controller::getFollowing));
+           path("/v1/api/postData", () -> post(Controller::fetchData));
+           path("/v1/api/artists", () -> get(Controller::fetchList));
+           path("/v1/api/artists{id}" , () -> get (Controller::fetchEvent));
+
         });
     }
+
 }

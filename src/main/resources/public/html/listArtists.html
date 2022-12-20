@@ -11,23 +11,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <script src="../script/spotify-auth.js" type="text/javascript"></script>
+
 </head>
 
 <body class="imageBackground">
-    <div id="searchBox">
-        <div class="titleBox">
-            <h1 id="h1Big">Event Tracker</h1>
-        </div>
-        <form id="locationForm">
-            <label for="location">Plats för eventet</label>
-            <input type="text" name="location" id="location">
-            <button onclick="getToken()" type="button" id="locationButton">SÖK</button>
-        </form>
-
-
-
-    </script>
-    <input type = "button" onclick = "getData('http://localhost:8888/2/events/')" value = "Display2">
+    <div id="tableBox">
+        <header>
+            <div class="titleBox">
+                <h1 class="h1Small">Event Tracker</h1>
+            </div>
+        </header>
+        <ul id="artistsList">
+            <!-- Här skrivs en lista ut med alla artister som har relevanta event -->
+        </ul>
     </div>
+    <script src="../script/script.js" type="text/javascript"></script>
 </body>
 </html>
