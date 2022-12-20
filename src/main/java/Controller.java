@@ -30,10 +30,4 @@ public class Controller {
         context.result(mapper.writeValueAsString(itemsList));
     }
 
-    public static void fetchData (Context context) throws URISyntaxException, IOException, InterruptedException {
-        var data = context.body(); // här finns data om artisterna från spotify
-
-    }
-
-
 }
