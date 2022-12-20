@@ -20,8 +20,7 @@ function getToken(){
 
         const artists = response.json();    
         searchObject.artists=artists
-        console.log(searchObject)
-        
+    
         postData(searchObject)
         
     };
@@ -35,7 +34,7 @@ function postData(data){
         headers: {"Accept": "application/json"}
       })
       .done(function(result) {
-        //location.href = "listArtists.html";
+        location.href = "listArtists.html";
       });
     
 }
