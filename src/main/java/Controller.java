@@ -40,6 +40,9 @@ public class Controller {
         context.result(mapper.writeValueAsString(SeatgeekService.getSpecificConcert(context)));
     }
 
+    public static void getAllConcertsInCity(Context context) throws URISyntaxException, IOException, InterruptedException {
+        context.result(mapper.writeValueAsString(SeatgeekService.getAllConcertsInCity(context)));
+    }
 
     //INTE FÄRDIGA METODER
 
@@ -47,9 +50,6 @@ public class Controller {
      *
      * kan fixa: så man bara ser konserter artisterna du följer har i den staden
      */
-    public static void getAllConcertsInCity(Context context) throws URISyntaxException, IOException, InterruptedException {
-        context.result(mapper.writeValueAsString(SeatgeekService.getAllConcertsInCity(context)));
-    }
 
     /**
      *hämta info från wikipedia
