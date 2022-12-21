@@ -52,6 +52,7 @@ $(document).ready(function(){
         listArtists=$("#artistsList");
 
         const artists=JSON.parse(data).artists.items
+        console.log(artists)
     
         for(i=0; i<artists.length; i++){
             html="<div id='artist_" + i + "'> <img class='artistListImage' src='" + artists[i]["images"][0]["url"] + "'> <h4>" + artists[i]["name"] + "</h4> </div>" // key:n kan behöva ändras
