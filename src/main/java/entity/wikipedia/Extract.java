@@ -1,6 +1,8 @@
 package entity.wikipedia;
 
 public class Extract {
+    private String extract;
+
     public String getExtract() {
         return extract;
     }
@@ -8,6 +10,4 @@ public class Extract {
     public void setExtract(String extract) {
         this.extract = extract;
     }
-
-    private String extract;
 }
