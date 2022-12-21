@@ -1,7 +1,7 @@
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.seatgeek.Events;
-import entity.seatgeek.ExempelSeat;
+import entity.seatgeek.EventWrapper;
 import entity.spotify.Example;
 import io.javalin.http.Context;
 import java.io.IOException;
@@ -92,7 +92,7 @@ public class Controller {
             System.out.println("https://api.seatgeek.com/2/events?performers.slug=" + artistName + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI");
             HttpClient httpClient = HttpClient.newHttpClient();
             HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-            ExempelSeat concerts = mapper.readValue(getResponse.body(), ExempelSeat.class);
+            EventWrapper concerts = mapper.readValue(getResponse.body(), EventWrapper.class);
             context.result(mapper.writeValueAsString(concerts));
         }
 
@@ -100,13 +100,13 @@ public class Controller {
             String concertId = context.pathParam("concert_id");
 
             HttpRequest getRequest = HttpRequest.newBuilder()
-                    .uri(new URI("https://api.seatgeek.com/2/events/" + concertId + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
+                    .uri(new URI("https://api.seatgeek.com/2/events?id=" + concertId + "&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
                     .header("Content-Type","application/json")
                     .build();
 
             HttpClient httpClient = HttpClient.newHttpClient();
             HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-            Events concert = mapper.readValue(getResponse.body(), Events.class);
+            EventWrapper concert = mapper.readValue(getResponse.body(), EventWrapper.class);
             context.result(mapper.writeValueAsString(concert));
         }
 

@@ -2,15 +2,15 @@ package entity.seatgeek;
 
 import java.util.List;
 
-public class ExempelSeat {
+public class EventWrapper {
     private List<Events> events;
     private Meta meta;
 
-    public List<Events> getEvent() {
+    public List<Events> getEvents() {
         return events;
     }
 
-    public void setEvent(List<Events> events) {
+    public void setEvents(List<Events> events) {
         this.events = events;
     }
 
