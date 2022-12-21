@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import entity.seatgeek.Event;
 import entity.spotify.Example;
 import io.javalin.http.Context;
 import java.io.IOException;
@@ -76,6 +77,51 @@ public class Controller {
             Example itemsList = mapper.readValue(postResponse.body(), Example.class);
             context.result(mapper.writeValueAsString(itemsList));
 
+        }
+
+        public static void getConcertsOfArtist(Context context) throws URISyntaxException, IOException, InterruptedException{
+            String pathId = context.pathParam("artist_id");
+            String artistName = pathId.replace(' ', '+');
+
+            HttpRequest getRequest = HttpRequest.newBuilder()
+                    .uri(new URI("https://api.seatgeek.com/2/events?performers.slug=" + artistName + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
+                    .header("Content-Type","application/json")
+                    .build();
+
+            System.out.println("https://api.seatgeek.com/2/events?performers.slug=" + artistName + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI");
+            HttpClient httpClient = HttpClient.newHttpClient();
+            HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
+            Event concerts = mapper.readValue(getResponse.body(), Event.class);
+            context.result(mapper.writeValueAsString(concerts));
+        }
+
+        public static void getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
+            String concertId = context.pathParam("concert_id");
+
+            HttpRequest getRequest = HttpRequest.newBuilder()
+                    .uri(new URI("https://api.seatgeek.com/2/events/" + concertId + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
+                    .header("Content-Type","application/json")
+                    .build();
+
+            HttpClient httpClient = HttpClient.newHttpClient();
+            HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
+            Event concert = mapper.readValue(getResponse.body(), Event.class);
+            context.result(mapper.writeValueAsString(concert));
+        }
+
+        public static void getAllConcertsInCity(Context context) throws URISyntaxException, IOException, InterruptedException {
+            String pathId = context.pathParam("city");
+            String city = pathId.replace(' ', '+');
+
+            HttpRequest getRequest = HttpRequest.newBuilder()
+                    .uri(new URI("https://api.seatgeek.com/2/events?type=concert&venue.city=" + city + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
+                    .header("Content-Type","application/json")
+                    .build();
+
+            HttpClient httpClient = HttpClient.newHttpClient();
+            HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
+            Event concert = mapper.readValue(getResponse.body(), Event.class);
+            context.result(mapper.writeValueAsString(concert));
         }
 
         public static void fetchArtistConcert (Context context) throws URISyntaxException, IOException, InterruptedException {
