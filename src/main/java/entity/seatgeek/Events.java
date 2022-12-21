@@ -1,6 +1,6 @@
 package entity.seatgeek;
 
-public class Event {
+public class Events {
     String title;
     String announce_date;
     String id;
