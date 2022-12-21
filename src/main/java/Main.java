@@ -20,16 +20,10 @@ public class Main {
         //API Endpoints
         app.routes(() -> {
 
-           path("/v1/artists/", () -> get(Controller::getFollowing));
-           path("/2/events/", () -> get(Controller::getConcerts));
-           //path("/v1/api/artists/following", () -> get(Controller::getFollowing));
-           path("/v1/api/postData", () -> post(Controller::fetchData));
-           //path("/v1/api/artists", () -> get(Controller::fetchList));
-           //path("/v1/api/artists{id}" , () -> get (Controller::fetchEvent));
-           path("/v1/api/artists/{name}", () -> post(Controller::searchArtist));
-
-           path("api/v1/artists/{artist_id}/concerts", () -> get(Controller::getConcertsOfArtist));
-           path("api/v1/artists/{artist_id}/concerts/{concert_id}", () -> get(Controller::getSpecificConcert));
+           path("/api/v1/artists/", () -> get(Controller::getFollowing));
+           path("/api/v1/artists/{name}", () -> post(Controller::searchArtist));
+           path("/api/v1/artists/{artist_id}/concerts", () -> get(Controller::getConcertsOfArtist));
+           path("/api/v1/concerts/{concert_id}", () -> get(Controller::getSpecificConcert));
         });
     }
 
