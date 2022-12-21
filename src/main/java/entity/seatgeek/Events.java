@@ -1,11 +1,11 @@
 package entity.seatgeek;
 
 public class Events {
-    String title;
-    String id;
-    String short_title;
-    Venue venue;
-    String datetime_utc;
+    private String title;
+    private String id;
+    private String short_title;
+    private Venue venue;
+    private String datetime_utc;
 
     public String getDatetime_utc() {
         return datetime_utc;

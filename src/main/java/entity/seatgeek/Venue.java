@@ -1,8 +1,8 @@
 package entity.seatgeek;
 
 public class Venue {
-    String city;
-    String name;
+    private String city;
+    private String name;
 
     public String getCity() {
         return city;

@@ -3,7 +3,7 @@ package entity.spotify;
 import java.util.List;
 
 public class Artists {
-    List<Items> items;
+    private List<Items> items;
     private String href;
     private Cursors cursors;
 
