@@ -1,40 +1,11 @@
-function getToken(){
+async function getToken(){
     let params = (new URL(location.href.replace('#','?'))).searchParams;
     let token = params.get('access_token');
-    window.localStorage.setItem('access_token',token)
-
-    const endpoint = "http://localhost:8888/v1/artists/following";
-   
-    getData(endpoint)
-
-    async function getData(endpoint ){
-        const response = await fetch(endpoint, {
-            method : "GET",
-            headers: {
-                'Authorization': 'Bearer '+ token 
-            }
-        });   
-
-        const artists = await response.json();    
-        postData(artists)
-        
-    };
-};
-
-function postData(data){
-    $.ajax({
-        method: "POST",
-        url: 'http://localhost:8888/v1/api/postData',
-        data: JSON.stringify(data),
-        headers: {"Accept": "application/json"}
-      })
-      .done(function(result) {
-        location.href = "listArtists.html";
-      });
-    
+    window.localStorage.setItem('access_token',token)   
+    location.href = "listArtists.html";
 }
-    
 
+    
 function login(){
     let scope = 'user-follow-read';
     let clientID = '7a6d44b7b4c7435f9ed4340b9e613395';

@@ -1,32 +1,31 @@
-function fetchEvent(details){
+function fetchEvent(artistName){
     return function(){
-        location.href = "eventAndArtist.html";
+        location.href = "listEvent.html";
 
         $.ajax({
-            url:details,
+            url:"http://localhost:8888/v1/api/artists/"+ artistName +"/concerts",
             headers:{"Accept": "application/json"}
         })
         .done(function(data){
-            listArtists=$("#artistsList");
-    
+            listEvent=$("#eventsList");
+            $("#artistName").text(data["artistName"]); // key:n kan behöva ändras
+
             for(i=0; i<data.length; i++){
-                html="<li id='event_" + i + "'>" + data[i]["name"] + "</li>" // key:n kan behöva ändras
-                listEventAndArtists.append(html);
+                html="<li id='event_" + i + "'>" + data[i]["eventName"] + "</li>" // key:n kan behöva ändras
+                listEvent.append(html);
     
-                $("#artist_" + i).click(fetchEvent(data[i]["details"]));
+                $("#event_" + i).click(fetchInfo(artistName, data[i]["eventName"]));
             }
-          
         });
     }
-
 }
 
-function fetchInfo(details){
+function fetchInfo(artistName, eventName){
     return function(){
         location.href = "eventAndArtist.html";
 
         $.ajax({
-            url:details,
+            url: "http://localhost:8888/api/v1/artists/ "+ artistName + "/concerts/" + eventName,
             headers:{"Accept": "application/json"}
         })
         .done(function(data){
@@ -41,21 +40,28 @@ function fetchInfo(details){
             $("#eventScen").text(data["eventScen"]);// key:n kan behöva ändras
         });
     }
-};
+}
 
 $(document).ready(function(){
+    const token= window.localStorage.getItem('access_token')
     $.ajax({
         url: 'http://localhost:8888/v1/api/artists',
-        headers: {"Accept": "application/json"}
+        headers: {"Accept": "application/json", 'Authorization': 'Bearer '+ token}
     })
     .done(function(data){
         listArtists=$("#artistsList");
 
-        for(i=0; i<data.length; i++){
-            html="<li id='artist_" + i + "'>" + data[i]["name"] + "</li>" // key:n kan behöva ändras
-            listEventAndArtists.append(html);
+        const artists=JSON.parse(data).artists.items
+        console.log(artists)
+    
+        for(i=0; i<artists.length; i++){
+            html="<div id='artist_" + i + "'> <img class='artistListImage' src='" + artists[i]["images"][0]["url"] + "'> <h4>" + artists[i]["name"] + "</h4> </div>" // key:n kan behöva ändras
+            listArtists.append(html);
 
-            $("#artist_" + i).click(fetchEvent(data[i]["details"]));
+            $("#artist_" + i).click(fetchEvent(artists[i]["name"]));
         }
     });
 });
+
+
+

@@ -48,6 +48,16 @@ public class Controller {
     public static void fetchData (Context context) throws URISyntaxException, IOException, InterruptedException {
         var data = context.body(); // här finns data om platsen som sökts på och artisterna från spotify
 
+    public static void getWiki (Context context) throws URISyntaxException, IOException, InterruptedException { // Jag vet inte om detta fungerar? Emilia
+        HttpRequest getRequest = HttpRequest.newBuilder()
+            .uri(new URI ("https://sv.wikipedia.org/api/rest_v1/page/summary/"+ context))
+            .header("Content-Type","application/json")
+            .build();
+
+            HttpClient httpClient = HttpClient.newHttpClient();
+            HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
+            Example itemsList = mapper.readValue(getResponse.body(), Example.class);
+            context.result(mapper.writeValueAsString(itemsList));
     }
 
     public static void searchArtist(Context context) throws URISyntaxException, IOException, InterruptedException {
@@ -65,4 +75,14 @@ public class Controller {
         context.result(mapper.writeValueAsString(itemsList));
 
     }
+    public static void fetchArtistConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
+        
+
+        //hämtar en specifik koncert av en artist
+    }
+
+   
+
+
+
 }

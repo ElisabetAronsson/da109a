@@ -6,8 +6,7 @@ body {
 }
 
 .imageBackground{
-    height: 100vh;
-    width: 100vw;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,12 +67,38 @@ button:hover{
     color:#adf6f2;
 }
 /*listArtists.html*/
+
 #tableBox{
     background-color: black;
-    max-width: 600px;
+    max-width: 800px;
     width: 80%;
-    height: 100vh;
+    min-height: 100vh;
 }
+
+.artistListImage{
+    width: 200px;
+    border: 3px solid #9E00FF;
+    
+}
+
+#artistsList div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    width: 200px;
+    border-radius: 10px;
+    background-color: rgb(26 26 26);
+    cursor: pointer;
+}
+
+#artistsList {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 
 /*eventAndArtist.html*/
 
@@ -113,12 +138,12 @@ section {
 span {
     width: 200px;
     height: 250px;
-    border: 2px solid #9E00FF;
+    border: 3px solid #9E00FF;
     margin: 30px;
 }
 
 #map {
-    border: 2px solid #9E00FF;
+    border: 3px solid #9E00FF;
     width: 300px;
     height: 200px;
     margin: 30px;
@@ -141,7 +166,12 @@ h3 {
     padding:  10px 50px 0 0;
     text-transform: uppercase;
     color: #FF20CE;
+}
 
+h4{
+    text-transform: uppercase;
+    color: #FF20CE;
+    text-align: center;
 }
 
 
