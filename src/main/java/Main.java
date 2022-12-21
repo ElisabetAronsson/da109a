@@ -19,10 +19,8 @@ public class Main {
 
         //API Endpoints
         app.routes(() -> {
-
            path("api/v1/artists/", () -> get(Controller::getFollowing));
-           path("api/v1/artists/{id}", () -> get(Controller::getConcerts)); //Samma som getConcertsOfArtist utan object-mapper för test
-           path("/v1/api/artists/", () -> get(Controller::getFollowing));
+           path("api/v1/artists/{id}", () -> get(Controller::getConcerts)); //Samma som getConcertsOfArtist utan object-mapper för test KLAR
            path("api/v1/artists/{id}/concerts", () -> get(Controller::getConcertsOfArtist));
            path("api/v1/artists/{artist_id}/concerts/{concert_id}", () -> get(Controller::getSpecificConcert));
            path("/v1/api/artists/{name}", () -> post(Controller::searchArtist));

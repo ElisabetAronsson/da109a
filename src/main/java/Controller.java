@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import entity.seatgeek.Event;
 import entity.spotify.Artists;
 import entity.spotify.Example;
+import entity.spotify.Items;
 import io.javalin.http.Context;
 import java.io.IOException;
 import java.net.URI;
@@ -13,6 +14,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Controller {
@@ -22,7 +24,6 @@ public class Controller {
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     public static void getFollowing(Context context) throws URISyntaxException, IOException, InterruptedException {
-
         String token = context.req().getHeader("Authorization");
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "me/following?type=artist&limit=" + LIMIT))
@@ -34,6 +35,12 @@ public class Controller {
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
         Example itemsList = mapper.readValue(getResponse.body(), Example.class);
         context.result(mapper.writeValueAsString(itemsList));
+
+        List<Items> itemsList1 = itemsList.getArtists().getItems();
+        for (Items item: itemsList1){
+           String name = item.getName();
+
+        }
     }
 
     public static void getConcerts(Context context) throws URISyntaxException, IOException, InterruptedException{
@@ -98,7 +105,7 @@ public class Controller {
         String token = context.req().getHeader("Authorization");
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "me/following?type=artist&limit=" + LIMIT))
-                .header("Content-Type","application/json")
+                .header("Content-Type", "application/json")
                 .header("Authorization", token)
                 .build();
 
@@ -111,7 +118,6 @@ public class Controller {
         /*for (Artists artist: itemsList.getArtists()) {
 
         } */
-
     }
 
     public static void getAllConcertsInCity(Context context) throws URISyntaxException, IOException, InterruptedException {

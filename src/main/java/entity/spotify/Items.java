@@ -1,6 +1,7 @@
 package entity.spotify;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import entity.seatgeek.Event;
 
 import java.util.List;
 
