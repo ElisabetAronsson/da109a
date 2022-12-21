@@ -21,7 +21,7 @@ public class Controller {
         String token = context.req().getHeader("Authorization");
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "me/following?type=artist&limit=" + LIMIT))
-                .header("Content-Type","application/json")
+                .header("Content-Type", "application/json")
                 .header("Authorization", token)
                 .build();
 
@@ -31,13 +31,13 @@ public class Controller {
         context.result(mapper.writeValueAsString(itemsList));
     }
 
-    public static void getConcerts(Context context) throws URISyntaxException, IOException, InterruptedException{
+    public static void getConcerts(Context context) throws URISyntaxException, IOException, InterruptedException {
         String pathId = context.pathParam("id");
         String artistName = pathId.replace(' ', '+');
 
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(new URI("https://api.seatgeek.com/2/events?performers.slug=" + artistName + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
-                .header("Content-Type","application/json")
+                .header("Content-Type", "application/json")
                 .build();
 
         HttpClient httpClient = HttpClient.newHttpClient();
@@ -45,44 +45,45 @@ public class Controller {
         context.result(getResponse.body());
     }
 
-    public static void fetchData (Context context) throws URISyntaxException, IOException, InterruptedException {
+    public static void fetchData(Context context) throws URISyntaxException, IOException, InterruptedException {
         var data = context.body(); // här finns data om platsen som sökts på och artisterna från spotify
+    }
 
-    public static void getWiki (Context context) throws URISyntaxException, IOException, InterruptedException { // Jag vet inte om detta fungerar? Emilia
-        HttpRequest getRequest = HttpRequest.newBuilder()
-            .uri(new URI ("https://sv.wikipedia.org/api/rest_v1/page/summary/"+ context))
-            .header("Content-Type","application/json")
-            .build();
+        public static void getWiki (Context context) throws URISyntaxException, IOException, InterruptedException { // Jag vet inte om detta fungerar? Emilia
+            HttpRequest getRequest = HttpRequest.newBuilder()
+                    .uri(new URI("https://sv.wikipedia.org/api/rest_v1/page/summary/" + context))
+                    .header("Content-Type", "application/json")
+                    .build();
 
             HttpClient httpClient = HttpClient.newHttpClient();
             HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
             Example itemsList = mapper.readValue(getResponse.body(), Example.class);
             context.result(mapper.writeValueAsString(itemsList));
+        }
+
+
+        public static void searchArtist (Context context) throws URISyntaxException, IOException, InterruptedException {
+
+            String searchParameter = context.pathParam("name").replaceAll(" ", "%20");
+            HttpRequest postRequest = HttpRequest.newBuilder()
+                    .uri(URI.create(BASE_URL + "search?q=artist:" + searchParameter + "&type=artist&limit=1"))
+                    .header("Content-Type", "application/json")
+                    .header("Authorization", context.req().getHeader("Authorization"))
+                    .build();
+
+            HttpClient httpClient = HttpClient.newHttpClient();
+            HttpResponse<String> postResponse = httpClient.send(postRequest, HttpResponse.BodyHandlers.ofString());
+            Example itemsList = mapper.readValue(postResponse.body(), Example.class);
+            context.result(mapper.writeValueAsString(itemsList));
+
+        }
+
+        public static void fetchArtistConcert (Context context) throws URISyntaxException, IOException, InterruptedException {
+
+
+            //hämtar en specifik koncert av en artist
+        }
+
+
     }
 
-    public static void searchArtist(Context context) throws URISyntaxException, IOException, InterruptedException {
-
-        String searchParameter = context.pathParam("name").replaceAll(" ","%20");
-        HttpRequest postRequest = HttpRequest.newBuilder()
-                .uri(URI.create(BASE_URL+"search?q=artist:" + searchParameter +"&type=artist&limit=1"))
-                .header("Content-Type","application/json")
-                .header("Authorization", context.req().getHeader("Authorization"))
-                .build();
-
-        HttpClient httpClient = HttpClient.newHttpClient();
-        HttpResponse<String> postResponse = httpClient.send(postRequest, HttpResponse.BodyHandlers.ofString());
-        Example itemsList = mapper.readValue(postResponse.body(), Example.class);
-        context.result(mapper.writeValueAsString(itemsList));
-
-    }
-    public static void fetchArtistConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
-        
-
-        //hämtar en specifik koncert av en artist
-    }
-
-   
-
-
-
-}
