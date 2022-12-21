@@ -54,7 +54,7 @@ public class Controller {
     /**
      *hämta info från wikipedia
      */
-    public static void getWiki (Context context) throws URISyntaxException, IOException, InterruptedException { // Jag vet inte om detta fungerar? Emilia
+    public static void getWikipediaExtractOfArtist (Context context) throws URISyntaxException, IOException, InterruptedException { // Jag vet inte om detta fungerar? Emilia
         context.result(mapper.writeValueAsString(WikipediaService.getWiki(context)));
     }
 }

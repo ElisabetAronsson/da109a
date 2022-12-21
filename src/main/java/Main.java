@@ -27,7 +27,7 @@ public class Main {
 
            path("/api/v1/location/{location_id}", () -> get(Controller::getAllConcertsInCity));
 
-           path("/api/v1/wikitest/{artist_id}", () -> get(Controller::getWiki));
+           path("/api/v1/wikitest/{artist_id}", () -> get(Controller::getWikipediaExtractOfArtist));
         });
     }
 
