@@ -30,7 +30,7 @@ public class Controller {
      * Hämtar en artist som man följer alla konserter
      */
     public static void getConcertsOfArtist(Context context) throws URISyntaxException, IOException, InterruptedException{
-        context.result(mapper.writeValueAsString(SeatgeekService.getConcertsOfArtist(context)));
+        context.result(mapper.writeValueAsString(SpotifyService.getFollowing(context)));
     }
 
     /**

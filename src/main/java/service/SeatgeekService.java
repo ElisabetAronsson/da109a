@@ -10,14 +10,14 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 import static service.SpotifyService.mapper;
 
 public class SeatgeekService {
 
-    public static EventWrapper getConcertsOfArtist(Context context) throws URISyntaxException, IOException, InterruptedException{
-        String pathId = context.pathParam("artist_id");
-        String artistName = pathId.replace(' ', '+');
+    public static List<Events> getConcertsOfArtist(String artistName) throws URISyntaxException, IOException, InterruptedException{
+        artistName = artistName.replace(' ', '-');
 
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(new URI("https://api.seatgeek.com/2/events?performers.slug=" + artistName + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
@@ -27,7 +27,7 @@ public class SeatgeekService {
         System.out.println("https://api.seatgeek.com/2/events?performers.slug=" + artistName + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI");
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        return mapper.readValue(getResponse.body(), EventWrapper.class);
+        return mapper.readValue(getResponse.body(), EventWrapper.class).getEvents();
     }
 
     public static EventWrapper getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
