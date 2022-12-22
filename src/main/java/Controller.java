@@ -41,7 +41,8 @@ public class Controller {
     }
 
     public static void getAllConcertsInCity(Context context) throws URISyntaxException, IOException, InterruptedException {
-        context.result(mapper.writeValueAsString(SeatgeekService.getAllConcertsInCity(context)));
+        SeatgeekService.getAllConcertsInCity(SpotifyService.getFollowing(context), context.pathParam("location_id"));
+        //context.result(mapper.writeValueAsString(SeatgeekService.getAllConcertsInCity())); hmm....
     }
 
     //INTE FÄRDIGA METODER
@@ -54,7 +55,7 @@ public class Controller {
     /**
      *hämta info från wikipedia
      */
-    public static void getWikipediaExtractOfArtist (Context context) throws URISyntaxException, IOException, InterruptedException { // Jag vet inte om detta fungerar? Emilia
+    public static void getWikipediaExtractOfArtist (Context context) throws URISyntaxException, IOException, InterruptedException {
         context.result(mapper.writeValueAsString(WikipediaService.getWiki(context)));
     }
 }

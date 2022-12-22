@@ -3,6 +3,7 @@ package service;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.spotify.Example;
+import entity.spotify.Items;
 import io.javalin.http.Context;
 
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.List;
 
 public class SpotifyService {
     static final String BASE_URL = "https://api.spotify.com/v1/";

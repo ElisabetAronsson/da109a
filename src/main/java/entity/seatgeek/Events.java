@@ -1,6 +1,8 @@
 package entity.seatgeek;
 
-public class Events {
+import com.google.gson.JsonElement;
+
+public class Events extends JsonElement {
     private String title;
     private String id;
     private String short_title;
@@ -45,5 +47,10 @@ public class Events {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public JsonElement deepCopy() {
+        return this;
     }
 }
