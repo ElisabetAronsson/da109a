@@ -1,6 +1,5 @@
 package service;
-
-import com.google.gson.JsonElement;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import entity.seatgeek.EventWrapper;
 import entity.seatgeek.Events;
@@ -15,6 +14,9 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.Buffer;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static service.SpotifyService.mapper;
@@ -54,29 +56,30 @@ public class SeatgeekService {
      *
      * kan fixa: så man bara ser konserter artisterna du följer har i den staden
      */
-    public static JsonObject getAllConcertsInCity(Example followedArtists, String city) throws URISyntaxException, IOException, InterruptedException {
-        JsonObject json = new JsonObject();
+    public static JsonArray getAllConcertsInCity(Example followedArtists, String city) throws URISyntaxException, IOException, InterruptedException {
+        //Events events;
+        JsonArray jsonArray = new JsonArray();
+        JsonObject object = new JsonObject();
+
         city = city.replace(' ', '+');
 
         List<Items> items = followedArtists.getArtists().getItems();
         for (Items item: items) {
             String name = item.getName();
-            if((name != null) || name != " ") {
-                HttpRequest getRequest = HttpRequest.newBuilder()
-                        .uri(new URI("https://api.seatgeek.com/2/events?type=concert&venue.city=" + city + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
-                        .header("Content-Type", "application/json")
-                        .build();
+            name = name.replace(' ', '+');
+            HttpRequest getRequest = HttpRequest.newBuilder()
+                    .uri(new URI("https://api.seatgeek.com/2/events?type=concert&venue.city=" + city + "&performers.slug=" + name +"&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
+                    .header("Content-Type", "application/json")
+                    .build();
 
-                HttpClient httpClient = HttpClient.newHttpClient();
-                HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-                Events event = mapper.readValue(getResponse.body(), Events.class);
+            HttpClient httpClient = HttpClient.newHttpClient();
+            HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
 
-
-                json.add(name, event); //Deep copy?
-            }
+            //object = getRequest
+            //jsonArray.add(object);
+            //events = mapper.readValue(getResponse.body(), Events.class);
         }
-        System.out.println(json.toString());
-        return json;
+        return jsonArray;
+        //return events;
     }
-
 }

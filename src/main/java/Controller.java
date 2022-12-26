@@ -42,7 +42,7 @@ public class Controller {
 
     public static void getAllConcertsInCity(Context context) throws URISyntaxException, IOException, InterruptedException {
         SeatgeekService.getAllConcertsInCity(SpotifyService.getFollowing(context), context.pathParam("location_id"));
-        //context.result(mapper.writeValueAsString(SeatgeekService.getAllConcertsInCity())); hmm....
+        //context.result(mapper.writeValueAsString(SeatgeekService.getAllConcertsInCity()));
     }
 
     //INTE FÄRDIGA METODER
