@@ -1,9 +1,10 @@
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import entity.seatgeek.EventWrapper;
 import entity.seatgeek.Events;
+import entity.seatgeek.Performers;
 import entity.spotify.Artists;
 import entity.spotify.Items;
+import entity.wikipedia.ExtractWrapper;
 import io.javalin.http.Context;
 import service.SeatgeekService;
 import service.SpotifyService;
@@ -11,26 +12,11 @@ import service.WikipediaService;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.Collections;
 import java.util.List;
 
 public class Controller {
     static final ObjectMapper mapper = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-    /**
-     * Hämtar vilka artister man följer på spotify
-     */
-    public static void getFollowing(Context context) throws URISyntaxException, IOException, InterruptedException {
-        context.result(mapper.writeValueAsString(SpotifyService.getFollowing(context)));
-    }
-
-    /**
-     * Hämtar en specifik artist man sökt på
-     */
-    public static void searchArtist (Context context) throws URISyntaxException, IOException, InterruptedException {
-        context.result(mapper.writeValueAsString(SpotifyService.searchArtist(context)));
-    }
 
     /**
      * Hämtar en artist som man följer alla konserter
@@ -47,7 +33,13 @@ public class Controller {
      * Hämtar en specifik konsert med ett konsert ID
      */
     public static void getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
-        context.result(mapper.writeValueAsString(SeatgeekService.getSpecificConcert(context)));
+        Events events = SeatgeekService.getSpecificConcert(context);
+        ExtractWrapper extract = WikipediaService.fetchExtract(events);
+        List<Performers> performers = events.getPerformers();
+        for (Performers perf : performers){
+            perf.setExtract(extract.getExtract());
+        }
+        context.result(mapper.writeValueAsString(events));
     }
 
     /**
@@ -58,12 +50,31 @@ public class Controller {
         for (Items items : artists.getItems()) {
             String name = items.getName();
             List<Events> event = SeatgeekService.getMyArtistsConcertsInCity(name, context);
-            items.setEvents(event);
+            if (event!= null) {
+                items.setEvents(event);
+            }
         }
         context.result(mapper.writeValueAsString(artists));
     }
 
-    //INTE FÄRDIGA METODER
+
+    /**
+     * Hämtar vilka artister man följer på spotify
+     */
+    public static void getFollowing(Context context) throws URISyntaxException, IOException, InterruptedException {
+        context.result(mapper.writeValueAsString(SpotifyService.getFollowing(context)));
+    }
+
+    /**
+     * Hämtar en specifik artist man sökt på
+     */
+    public static void searchArtist (Context context) throws URISyntaxException, IOException, InterruptedException {
+        context.result(mapper.writeValueAsString(SpotifyService.searchArtist(context)));
+    }
+
+    public static void getWikipediaExtractOfArtist (Context context) throws URISyntaxException, IOException, InterruptedException {
+       // context.result(mapper.writeValueAsString(WikipediaService.fetchExtract(context)));
+    }
 
     /**För att hämta alla konserter i den staden man söker på
      *
@@ -73,7 +84,5 @@ public class Controller {
     /**
      *hämta info från wikipedia
      */
-    public static void getWikipediaExtractOfArtist (Context context) throws URISyntaxException, IOException, InterruptedException {
-        context.result(mapper.writeValueAsString(WikipediaService.getWiki(context)));
-    }
+
 }

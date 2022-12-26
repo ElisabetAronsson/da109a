@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Response {
     private Meta meta;
-    private List<Performer> performers;
+    private List<Performers> performers;
 
     public Response() {
     }
@@ -17,11 +17,11 @@ public class Response {
         this.meta = meta;
     }
 
-    public List<Performer> getPerformers() {
+    public List<Performers> getPerformers() {
         return performers;
     }
 
-    public void setPerformers(List<Performer> performers) {
+    public void setPerformers(List<Performers> performers) {
         this.performers = performers;
     }
 }

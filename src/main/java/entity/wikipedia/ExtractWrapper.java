@@ -1,6 +1,6 @@
 package entity.wikipedia;
 
-public class Extract {
+public class ExtractWrapper {
     private String extract;
 
     public String getExtract() {

@@ -1,19 +1,21 @@
 package entity.seatgeek;
 
+import java.util.List;
+
 public class Events {
     private String title;
     private String id;
     private String short_title;
     private Venue venue;
     private String datetime_utc;
-    private Performer mainPerformer;
+    private List<Performers> performers;
 
-    public Performer getMainPerformer() {
-        return mainPerformer;
+    public List<Performers> getPerformers() {
+        return performers;
     }
 
-    public void setMainPerformer(Performer mainPerformer) {
-        this.mainPerformer = mainPerformer;
+    public void setPerformers(List<Performers> performers) {
+        this.performers = performers;
     }
 
     public String getDatetime_utc() {

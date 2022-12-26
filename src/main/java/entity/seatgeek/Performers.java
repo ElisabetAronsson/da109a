@@ -1,15 +1,15 @@
 package entity.seatgeek;
 
-public class Performer {
-    private String name;
+public class Performers {
+    private String primary;
     private String extract;
 
-    public String getName() {
-        return name;
+    public String getPrimary() {
+        return primary;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPrimary(String primary) {
+        this.primary = primary;
     }
 
     public String getExtract() {
