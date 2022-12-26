@@ -1,5 +1,7 @@
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import entity.spotify.Artists;
+import entity.spotify.Items;
 import io.javalin.http.Context;
 import service.SeatgeekService;
 import service.SpotifyService;
@@ -30,7 +32,11 @@ public class Controller {
      * Hämtar en artist som man följer alla konserter
      */
     public static void getConcertsOfArtist(Context context) throws URISyntaxException, IOException, InterruptedException{
-        context.result(mapper.writeValueAsString(SpotifyService.getFollowing(context)));
+        Artists artists = SpotifyService.getFollowing(context);
+        for (Items items : artists.getItems()) {
+            items.setEvents(SeatgeekService.getConcertsOfArtist(items.getName()));
+        }
+        context.result(mapper.writeValueAsString(artists));
     }
 
     /**
@@ -41,6 +47,8 @@ public class Controller {
     }
 
     public static void getAllConcertsInCity(Context context) throws URISyntaxException, IOException, InterruptedException {
+        Artists artists = SpotifyService.getFollowing(context);
+
         context.result(mapper.writeValueAsString(SeatgeekService.getAllConcertsInCity(context)));
     }
 

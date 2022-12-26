@@ -36,12 +36,6 @@ public class SpotifyService {
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
         JsonNode root = mapper.readTree(getResponse.body());
         Artists artists = mapper.treeToValue(root.path("artists"), Artists.class);
-
-
-        for (Items items : artists.getItems()) {
-            items.setEvents(SeatgeekService.getConcertsOfArtist(items.getName()));
-        }
-
         return artists;
     }
 
