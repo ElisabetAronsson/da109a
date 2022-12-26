@@ -6,6 +6,15 @@ public class Events {
     private String short_title;
     private Venue venue;
     private String datetime_utc;
+    private Performer mainPerformer;
+
+    public Performer getMainPerformer() {
+        return mainPerformer;
+    }
+
+    public void setMainPerformer(Performer mainPerformer) {
+        this.mainPerformer = mainPerformer;
+    }
 
     public String getDatetime_utc() {
         return datetime_utc;

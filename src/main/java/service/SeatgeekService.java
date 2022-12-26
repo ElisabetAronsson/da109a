@@ -30,7 +30,7 @@ public class SeatgeekService {
         return mapper.readValue(getResponse.body(), EventWrapper.class).getEvents();
     }
 
-    public static EventWrapper getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
+    public static Events getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
         String concertId = context.pathParam("concert_id");
 
         HttpRequest getRequest = HttpRequest.newBuilder()
@@ -40,7 +40,7 @@ public class SeatgeekService {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        return mapper.readValue(getResponse.body(), EventWrapper.class);
+        return mapper.readValue(getResponse.body(), Events.class);
     }
 
     /**För att hämta alla konserter i den staden man söker på
