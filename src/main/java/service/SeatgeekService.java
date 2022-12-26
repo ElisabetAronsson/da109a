@@ -47,18 +47,22 @@ public class SeatgeekService {
      *
      * kan fixa: så man bara ser konserter artisterna du följer har i den staden
      */
-    public static Events getAllConcertsInCity(Context context) throws URISyntaxException, IOException, InterruptedException {
-        String pathId = context.pathParam("city");
-        String city = pathId.replace(' ', '+');
+    public static List<Events> getMyArtistsConcertsInCity(String artistName, Context context) throws URISyntaxException, IOException, InterruptedException {
+        String pathParamCity = context.pathParam("city");
+        String paramName = artistName;
+        String city = pathParamCity.replace(' ', '+');
+        String name = paramName.replace(' ', '+');
 
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(new URI("https://api.seatgeek.com/2/events?type=concert&venue.city=" + city + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
+                .uri(new URI("https://api.seatgeek.com/2/events?type=concert&venue.city=" + city + "&performers.slug=" + name +"&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
                 .header("Content-Type","application/json")
                 .build();
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        return mapper.readValue(getResponse.body(), Events.class);
+        if(!getResponse.body().isEmpty()) {
+            return mapper.readValue(getResponse.body(), EventWrapper.class).getEvents();
+        } else return null;
     }
 
 }

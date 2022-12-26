@@ -1,5 +1,7 @@
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import entity.seatgeek.EventWrapper;
+import entity.seatgeek.Events;
 import entity.spotify.Artists;
 import entity.spotify.Items;
 import io.javalin.http.Context;
@@ -9,6 +11,8 @@ import service.WikipediaService;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Collections;
+import java.util.List;
 
 public class Controller {
     static final ObjectMapper mapper = new ObjectMapper()
@@ -46,10 +50,17 @@ public class Controller {
         context.result(mapper.writeValueAsString(SeatgeekService.getSpecificConcert(context)));
     }
 
+    /**
+     * Alla ens artisters konserter i en stad
+     */
     public static void getAllConcertsInCity(Context context) throws URISyntaxException, IOException, InterruptedException {
         Artists artists = SpotifyService.getFollowing(context);
-
-        context.result(mapper.writeValueAsString(SeatgeekService.getAllConcertsInCity(context)));
+        for (Items items : artists.getItems()) {
+            String name = items.getName();
+            List<Events> event = SeatgeekService.getMyArtistsConcertsInCity(name, context);
+            items.setEvents(event);
+        }
+        context.result(mapper.writeValueAsString(artists));
     }
 
     //INTE FÄRDIGA METODER
