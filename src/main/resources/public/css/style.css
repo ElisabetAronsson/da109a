@@ -81,7 +81,7 @@ button:hover{
     
 }
 
-#artistsList div{
+#artistsList div, #eventsList div{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -93,10 +93,14 @@ button:hover{
     cursor: pointer;
 }
 
-#artistsList {
+#artistsList, #eventsList{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+#eventsList p {
+    text-align: center;
 }
 
 
@@ -107,12 +111,19 @@ button:hover{
 }
 
 #container {
-    margin: 50px 0;
+    margin: auto;
     display: flex;
     justify-content: space-around;
+    max-width: 1050px;
 }
 
-section {
+
+.gray{
+    border-radius: 20px;
+    background-color: rgb(26 26 26);
+    padding: 20px;
+    margin: 40px;
+    max-width: 600px;
     width: 60%;
     display: flex;
     align-items: center;
@@ -120,7 +131,6 @@ section {
 }
 
 #eventInfoColumn{
-    max-width: 200px;
     display: flex;
     flex-direction: column;
 }
@@ -131,27 +141,16 @@ section {
     justify-content: space-between;
 }
 
-#border {
-    border-right: 2px solid #FF20CE;
-}
-
-span {
+#eventArtistImage {
     width: 200px;
-    height: 250px;
     border: 3px solid #9E00FF;
-    margin: 30px;
 }
 
-#map {
-    border: 3px solid #9E00FF;
-    width: 300px;
-    height: 200px;
-    margin: 30px;
-}
 
 p {
     color:#adf6f2;
     font-size: 15px;
+    display: block;
 }
 
 h2 {
@@ -161,7 +160,7 @@ h2 {
     font-family: "Fredoka One";
     padding-bottom: 20px;
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
 }
 
 h3 {
@@ -197,7 +196,6 @@ a{
         display:none;
     }
     section:first-of-type {
-        border-bottom: 2px solid #FF20CE;
         padding-bottom: 60px;
         margin-bottom: 60px;
     }
