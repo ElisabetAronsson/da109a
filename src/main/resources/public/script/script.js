@@ -1,27 +1,28 @@
 function fetchEvents(){
-        let params = (new URL(location.href)).searchParams;
-        let artistName = params.get('artist').replace("%20", " ")
+    let params = (new URL(location.href)).searchParams;
+    let artistName = params.get('artist').replace("%20", " ")
 
-        const artists= JSON.parse(window.localStorage.getItem('eventAndArtists'))
-        
-        $('#artistName').text(artistName);
-
-        listEvent=$("#eventsList");
-
-        
-            for(i=0; i<artists.length; i++){
-
-                if(artists[i]["name"]== artistName){
-
-                    for(y=0; y<artists[i]["events"].length; y++){
-                        let date = artists[i]["events"][y]["datetime_utc"].split("T")
-
-                        let eventName =  artists[i]["events"][y]["short_title"]
+    const artists= JSON.parse(window.localStorage.getItem('eventAndArtists'))
     
-                        html="<div id='event_" + i + "'> <a href='eventAndArtist.html?artist=" + artistName +  "&event=" + eventName + "'> <h4>" + artists[i]["events"][y]["short_title"] + "</h4> <p>" + artists[i]["events"][y]["venue"]["city"] + "</p> <p>" + date[0] + "</p></a></div>"
-                        listEvent.append(html);
-                    }
-                }};    
+    $('#artistName').text(artistName);
+
+    listEvent=$("#eventsList");
+
+    
+        for(i=0; i<artists.length; i++){
+
+            if(artists[i]["name"]== artistName){
+
+                for(y=0; y<artists[i]["events"].length; y++){
+                    let date = artists[i]["events"][y]["datetime_utc"].split("T")
+
+                    let eventName =  artists[i]["events"][y]["short_title"]
+
+                    html="<div id='event_" + i + "'> <a href='eventAndArtist.html?artist=" + artistName +  "&event=" + eventName + "'> <h4>" + artists[i]["events"][y]["short_title"] + "</h4> <p>" + artists[i]["events"][y]["venue"]["city"] + "</p> <p>" + date[0] + "</p></a></div>"
+                    listEvent.append(html);
+                }
+            }
+        };    
     }
 
 
@@ -69,7 +70,7 @@ function fetchArtists(){
         listArtists=$("#artistsList");
 
         const artists=JSON.parse(data).items
-        
+
         for(i=0; i<artists.length; i++){
             html="<div id='artist_" + i + "'> <a href='listEvent.html?artist=" + artists[i]['name'] + "'> <img class='artistListImage' src='" + artists[i]["images"][0]["url"] + "'> <h4>" + artists[i]["name"] + "</h4> </a></div>"
             listArtists.append(html);
@@ -77,5 +78,4 @@ function fetchArtists(){
         const artistsList = JSON.stringify(artists)
         window.localStorage.setItem('eventAndArtists',artistsList) 
     });
-    
 }
