@@ -1,8 +1,14 @@
 package service;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.seatgeek.Events;
-import entity.seatgeek.Performers;
+import entity.spotify.Artists;
+import entity.spotify.ArtistsWrapper;
+import entity.spotify.Items;
 import entity.wikipedia.ExtractWrapper;
+import io.javalin.http.Context;
 
 import java.io.IOException;
 import java.net.URI;
@@ -17,16 +23,12 @@ public class WikipediaService {
     /**
      * hämtar info från wikipedia
      */
-    public static ExtractWrapper fetchExtract (Events events) throws URISyntaxException, IOException, InterruptedException{
-        String name = "";
-
-        for (Performers perf : events.getPerformers()){
-           name = perf.getPrimary();
-        }
+    public static ExtractWrapper fetchExtract (Context context) throws URISyntaxException, IOException, InterruptedException{
+        String name =  context.pathParam("artist_name");
         String artistName = name.replace(' ', '_');
 
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(new URI("https://sv.wikipedia.org/api/rest_v1/page/summary/" + artistName))
+                .uri(new URI("https://en.wikipedia.org/api/rest_v1/page/summary/" + artistName))
                 .header("Content-Type", "application/json")
                 .build();
 

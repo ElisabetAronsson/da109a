@@ -33,13 +33,8 @@ public class Controller {
      * Hämtar en specifik konsert med ett konsert ID
      */
     public static void getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
-        Events events = SeatgeekService.getSpecificConcert(context);
-        ExtractWrapper extract = WikipediaService.fetchExtract(events);
-        List<Performers> performers = events.getPerformers();
-        for (Performers perf : performers){
-            perf.setExtract(extract.getExtract());
-        }
-        context.result(mapper.writeValueAsString(events));
+        ExtractWrapper extract = WikipediaService.fetchExtract(context);
+        context.result(mapper.writeValueAsString(extract));
     }
 
     /**
