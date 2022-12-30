@@ -7,6 +7,7 @@ import entity.seatgeek.Events;
 import entity.spotify.Artists;
 import entity.spotify.ArtistsWrapper;
 import entity.spotify.Items;
+import entity.wikipedia.Extract;
 import entity.wikipedia.ExtractWrapper;
 import io.javalin.http.Context;
 
@@ -23,7 +24,7 @@ public class WikipediaService {
     /**
      * hämtar info från wikipedia
      */
-    public static ExtractWrapper fetchExtract (Context context) throws URISyntaxException, IOException, InterruptedException{
+    public static Extract fetchExtract (Context context) throws URISyntaxException, IOException, InterruptedException{
         String name =  context.pathParam("artist_name");
         String artistName = name.replace(' ', '_');
 
@@ -34,6 +35,6 @@ public class WikipediaService {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        return mapper.readValue(getResponse.body(), ExtractWrapper.class);
+        return mapper.readValue(getResponse.body(), Extract.class);
     }
 }

@@ -1,13 +1,13 @@
 package entity.wikipedia;
 
 public class ExtractWrapper {
-    private String extract;
+    private Extract extract;
 
-    public String getExtract() {
+    public Extract getExtract() {
         return extract;
     }
 
-    public void setExtract(String extract) {
+    public void setExtract(Extract extract) {
         this.extract = extract;
     }
 }
