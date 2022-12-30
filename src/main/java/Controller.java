@@ -47,7 +47,7 @@ public class Controller {
 
     public static void fetchData (Context context) throws URISyntaxException, IOException, InterruptedException {
         var data = context.body(); // här finns data om platsen som sökts på och artisterna från spotify
-
+    }
     public static void getWiki (Context context) throws URISyntaxException, IOException, InterruptedException { // Jag vet inte om detta fungerar? Emilia
         HttpRequest getRequest = HttpRequest.newBuilder()
             .uri(new URI ("https://sv.wikipedia.org/api/rest_v1/page/summary/"+ context))
@@ -80,9 +80,5 @@ public class Controller {
 
         //hämtar en specifik koncert av en artist
     }
-
-   
-
-
 
 }
