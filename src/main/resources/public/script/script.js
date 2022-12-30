@@ -45,7 +45,7 @@ function fetchInfo(artistName, eventName){
 $(document).ready(function(){
     const token= window.localStorage.getItem('access_token')
     $.ajax({
-        url: 'http://localhost:8888/v1/artists',
+        url: 'http://localhost:8888/api/v1/artists',
         headers: {"Accept": "application/json", 'Authorization': 'Bearer '+ token}
     })
     .done(function(data){
