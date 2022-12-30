@@ -2,17 +2,26 @@ function fetchEvents(){
         let params = (new URL(location.href)).searchParams;
         let artistName = params.get('artist').replace("%20", "_")
 
-        const events= JSON.parse(window.localStorage.getItem('eventAndArtists')).items
+        const artists= JSON.parse(window.localStorage.getItem('eventAndArtists'))
         
         $('#artistName').text(artistName);
 
         listEvent=$("#eventsList");
 
-        if(events.name==artistName){
-            for(i=0; i<events.length; i++){
-                html="<div id='event_" + i + "'> <a href='eventAndArtist.html?artist=" + artistName + "?event=" + "'> <h4>" + events[i]["short_title"] + "</h4> <p>" +events[i]["city"] + "</p> </a></div>"
-                listEvent.append(html);
-        }};    
+        
+            for(i=0; i<artists.length; i++){
+
+                if(artists[i]["name"]== artistName){
+
+                    for(y=0; y<artists[i]["events"].length; y++){
+                        let date = artists[i]["events"][y]["datetime_utc"].split("T")
+
+                        const eventName =  artists[i]["events"][y]["short_title"]
+    
+                        html="<div id='event_" + i + "'> <a href='eventAndArtist.html?artist=" + artistName + "?event=" + eventName + "'> <h4>" + artists[i]["events"][y]["short_title"] + "</h4> <p>" + artists[i]["events"][y]["venue"]["city"] + "</p> <p>" + date[0] + "</p></a></div>"
+                        listEvent.append(html);
+                    }
+                }};    
     }
 
 
@@ -23,21 +32,37 @@ function fetchInfo(){
 
     location.href = "eventAndArtist.html";
 
-    $.ajax({
-        url: "http://localhost:8888/api/v1/artists/ "+ artistName + "/concerts/" + eventName,
-        headers:{"Accept": "application/json"}
-    })
-    .done(function(data){
 
-        $("#artistName").text(artistName);
-        $("#artistImage").html("<img src='" + data["image"] + "'>");// key:n kan behöva ändras
-        $("#artistInfo").text(data["artistInfo"]);// key:n kan behöva ändras
+    const artists= JSON.parse(window.localStorage.getItem('eventAndArtists'))
+        
+    listEvent=$("#eventsList");
 
-        $("#eventName").text(eventName);
-        $("#eventWhare").text(data["eventWhare"]);// key:n kan behöva ändras
-        $("#eventDateAndTime").text(data["eventDateAndTime"]);// key:n kan behöva ändras
-        $("#eventScen").text(data["eventScen"]);// key:n kan behöva ändras
-    });
+    
+        for(i=0; i<artists.length; i++){
+
+            if(artists[i]["name"]== artistName){
+
+                for(y=0; y<artists[i]["events"].length; y++){
+
+                    if(artists[i]["events"][y]["short_title"] == eventName){
+
+                        let date = artists[i]["events"][y]["datetime_utc"].split("T")
+
+                        $("#artistName").text(artistName);
+                        $("#artistImage").html("<img src='" + artists["image"] + "'>");
+                        $("#artistInfo") //wikipedia info
+                
+                        $("#eventName").text(eventName);
+                        $("#eventWhare").text(artists[i]["events"][y]["venue"]["city"]);// key:n kan behöva ändras
+                        $("#eventDate").text(date[0]);
+                        $("#eventTime").text(date[1])
+                        $("#eventLocation").text(artists[i]["events"][y]["venue"]["name"]);// key:n kan behöva ändras
+
+                    }
+                }
+            }};   
+
+       
     
 }
 

@@ -81,7 +81,7 @@ button:hover{
     
 }
 
-#artistsList div{
+#artistsList div, #eventsList div{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -93,10 +93,14 @@ button:hover{
     cursor: pointer;
 }
 
-#artistsList {
+#artistsList, #eventsList{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+#eventsList p {
+    text-align: center;
 }
 
 
