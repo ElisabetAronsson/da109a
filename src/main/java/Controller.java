@@ -45,6 +45,7 @@ public class Controller {
     /**
      * Alla ens artisters konserter i en stad
      */
+    /*
     public static void getAllConcertsInCity(Context context) throws URISyntaxException, IOException, InterruptedException {
         Artists artists = SpotifyService.getFollowing(context);
         for (Items items : artists.getItems()) {
@@ -56,33 +57,5 @@ public class Controller {
         }
         context.result(mapper.writeValueAsString(artists));
     }
-
-
-    /**
-     * Hämtar vilka artister man följer på spotify
-     */
-    public static void getFollowing(Context context) throws URISyntaxException, IOException, InterruptedException {
-        context.result(mapper.writeValueAsString(SpotifyService.getFollowing(context)));
-    }
-
-    /**
-     * Hämtar en specifik artist man sökt på
-     */
-    public static void searchArtist (Context context) throws URISyntaxException, IOException, InterruptedException {
-        context.result(mapper.writeValueAsString(SpotifyService.searchArtist(context)));
-    }
-
-    public static void getWikipediaExtractOfArtist (Context context) throws URISyntaxException, IOException, InterruptedException {
-       // context.result(mapper.writeValueAsString(WikipediaService.fetchExtract(context)));
-    }
-
-    /**För att hämta alla konserter i den staden man söker på
-     *
-     * kan fixa: så man bara ser konserter artisterna du följer har i den staden
-     */
-
-    /**
-     *hämta info från wikipedia
-     */
-
+*/
 }
