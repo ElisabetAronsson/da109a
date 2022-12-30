@@ -1,11 +1,14 @@
 package entity.spotify;
 
+import entity.seatgeek.Events;
+
 import java.util.List;
 
 public class Artists {
     private List<Items> items;
     private String href;
     private Cursors cursors;
+
 
     public List<Items> getItems() {
         return items;
@@ -30,4 +33,5 @@ public class Artists {
     public void setCursors(Cursors cursors) {
         this.cursors = cursors;
     }
+
 }

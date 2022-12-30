@@ -1,6 +1,7 @@
 package entity.spotify;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import entity.seatgeek.Events;
 
 import java.util.List;
 
@@ -9,7 +10,8 @@ public class Items {
     private  String id;
     @JsonProperty("external_urls")
     private Url external_urls;
-    List<Image> images;
+    private List<Image> images;
+    private List<Events> events;
 
     public Items() {
     }
@@ -43,5 +45,13 @@ public class Items {
 
     public void setExternal_urls(Url external_urls) {
         this.external_urls = external_urls;
+    }
+
+    public List<Events> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Events> events) {
+        this.events = events;
     }
 }

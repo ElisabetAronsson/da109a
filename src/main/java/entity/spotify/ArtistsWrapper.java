@@ -1,10 +1,8 @@
 package entity.spotify;
+import entity.spotify.Artists;
 
-public class Example {
+public class ArtistsWrapper {
     private Artists artists;
-
-    public Example() {
-    }
 
     public Artists getArtists() {
         return artists;
