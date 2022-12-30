@@ -1,23 +1,24 @@
-function fetchEvent(artistName){
-    return function(){
-        location.href = "listEvent.html";
+function fetchEvents(){
+        let params = (new URL(location.href)).searchParams;
+        let artistName = params.get('artist').replace("%20", "_")
+        console.log(artistName)
 
         $.ajax({
-            url:"http://localhost:8888/v1/api/artists/"+ artistName +"/concerts",
+            url:"http://localhost:8888/api/v1/artists/"+ artistName +"/concerts",
             headers:{"Accept": "application/json"}
         })
         .done(function(data){
+            console.log("hej")
             listEvent=$("#eventsList");
-            $("#artistName").text(data["artistName"]); // key:n kan behöva ändras
+            const events=JSON.parse(data).events.items
+
+            $("#artistName").text(artistName);
 
             for(i=0; i<data.length; i++){
-                html="<li id='event_" + i + "'>" + data[i]["eventName"] + "</li>" // key:n kan behöva ändras
+                html="<div id='event_" + i + "'> <a href='eventAndArtist.html?artist=" + artistName + "?event=" + "'> <h4>" + events[i]["name"] + "</h4> </a></div>" // key:n kan behöva ändras
                 listEvent.append(html);
-    
-                $("#event_" + i).click(fetchInfo(artistName, data[i]["eventName"]));
             }
         });
-    }
 }
 
 function fetchInfo(artistName, eventName){
@@ -42,7 +43,7 @@ function fetchInfo(artistName, eventName){
     }
 }
 
-$(document).ready(function(){
+function fetchArtists(){
     const token= window.localStorage.getItem('access_token')
     $.ajax({
         url: 'http://localhost:8888/api/v1/artists',
@@ -55,13 +56,11 @@ $(document).ready(function(){
         console.log(artists)
     
         for(i=0; i<artists.length; i++){
-            html="<div id='artist_" + i + "'> <img class='artistListImage' src='" + artists[i]["images"][0]["url"] + "'> <h4>" + artists[i]["name"] + "</h4> </div>" // key:n kan behöva ändras
+            html="<div id='artist_" + i + "'> <a href='listEvent.html?artist=" + artists[i]['name'] + "'> <img class='artistListImage' src='" + artists[i]["images"][0]["url"] + "'> <h4>" + artists[i]["name"] + "</h4> </a></div>" // key:n kan behöva ändras
             listArtists.append(html);
-
-            $("#artist_" + i).click(fetchEvent(artists[i]["name"]));
         }
     });
-});
+}
 
 
 
