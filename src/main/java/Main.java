@@ -19,15 +19,16 @@ public class Main {
 
         //API Endpoints
         app.routes(() -> {
+           //path("/api/v1/artists/", () -> get(Controller::getFollowing));
+           //path("/api/v1/artists/{name}", () -> post(Controller::searchArtist));
+           //path("/api/v1/artists/{artist_id}/concerts", () -> get(Controller::getConcertsOfArtist));
+           //path("/api/v1/concerts/{concert_id}", () -> get(Controller::getSpecificConcert));
+           //path("/api/v1/location/{location_id}", () -> get(Controller::getAllConcertsInCity));
+           //path("/api/v1/wikitest/{artist_id}", () -> get(Controller::getWikipediaExtractOfArtist));
 
-           path("/api/v1/artists/", () -> get(Controller::getFollowing));
-           path("/api/v1/artists/{name}", () -> post(Controller::searchArtist));
-           path("/api/v1/artists/{artist_id}/concerts", () -> get(Controller::getConcertsOfArtist));
-           path("/api/v1/concerts/{concert_id}", () -> get(Controller::getSpecificConcert));
-
-           path("/api/v1/location/{location_id}", () -> get(Controller::getAllConcertsInCity));
-
-           path("/api/v1/wikitest/{artist_id}", () -> get(Controller::getWikipediaExtractOfArtist));
+           path("api/v1/artists/concerts", () -> get(Controller::getConcertsOfArtist));
+           path("api/v1/artists/{city}", () -> get(Controller::getAllConcertsInCity));
+           path("api/v1/artists/{artist_name}/concerts/{concert_id}", () -> get(Controller::getSpecificConcert));
         });
     }
 
