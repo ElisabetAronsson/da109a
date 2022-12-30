@@ -1,5 +1,4 @@
 https://en.wikipedia.org/api/rest_v1/#/ api dokumentation
-
 https://en.wikipedia.org/api/rest_v1/page/summary/{artist}
 
 originalimage: {
@@ -8,15 +7,7 @@ originalimage: {
 
 extrakt: text beskrivning
 
-
-
-
-
 post to endpoint client id, scope och redirect uri
-
-api/token endpoint post authorization code and klients secret key returns accesstoken and refreshtoken 
-
-
-
+api/token endpoint post authorization code and klients secret key returns accesstoken and refreshtoken
 
 npm install jso
