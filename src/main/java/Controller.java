@@ -34,7 +34,7 @@ public class Controller {
      */
     public static void getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
         ExtractWrapper extract = WikipediaService.fetchExtract(context);
-        context.result(mapper.writeValueAsString(extract));
+        context.json(extract);
     }
 
     /**

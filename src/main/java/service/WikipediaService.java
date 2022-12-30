@@ -9,13 +9,15 @@ import entity.spotify.ArtistsWrapper;
 import entity.spotify.Items;
 import entity.wikipedia.ExtractWrapper;
 import io.javalin.http.Context;
-
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 
 import static service.SpotifyService.mapper;
 
@@ -23,17 +25,14 @@ public class WikipediaService {
     /**
      * hämtar info från wikipedia
      */
-    public static ExtractWrapper fetchExtract (Context context) throws URISyntaxException, IOException, InterruptedException{
-        String name =  context.pathParam("artist_name");
-        String artistName = name.replace(' ', '_');
-
-        HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(new URI("https://en.wikipedia.org/api/rest_v1/page/summary/" + artistName))
-                .header("Content-Type", "application/json")
-                .build();
-
-        HttpClient httpClient = HttpClient.newHttpClient();
-        HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        return mapper.readValue(getResponse.body(), ExtractWrapper.class);
+    public static ExtractWrapper fetchExtract (Context context) throws URISyntaxException, IOException, InterruptedException {
+        String name = context.pathParam("artist_name");
+        name = name.replace(" ","_");
+        CloseableHttpClient client = HttpClientBuilder.create().build();
+        HttpResponse response = client.execute(new HttpGet("https://en.wikipedia.org/api/rest_v1/page/summary/"+name));
+        HttpEntity entity = response.getEntity();
+        String json = EntityUtils.toString(entity, StandardCharsets.UTF_8);
+        ExtractWrapper extract = mapper.readValue(json, ExtractWrapper.class);
+        return extract;
     }
 }

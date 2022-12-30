@@ -51,5 +51,4 @@ public class SpotifyService {
         return mapper.readValue(postResponse.body(), ArtistsWrapper.class).getArtists();
     }
 
-
 }
