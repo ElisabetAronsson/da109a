@@ -11,3 +11,7 @@ post to endpoint client id, scope och redirect uri
 api/token endpoint post authorization code and klients secret key returns accesstoken and refreshtoken
 
 npm install jso
+
+
+tillbakasteg på ikonen 
+hantera tomma listor
