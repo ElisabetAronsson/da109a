@@ -196,7 +196,6 @@ a{
         display:none;
     }
     section:first-of-type {
-        border-bottom: 2px solid #FF20CE;
         padding-bottom: 60px;
         margin-bottom: 60px;
     }
