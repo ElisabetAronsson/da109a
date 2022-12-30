@@ -35,7 +35,7 @@ public class SpotifyService {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
         JsonNode root = mapper.readTree(getResponse.body());
-        return mapper.readValue(getResponse.body(), ArtistsWrapper.class).getArtists();
+        return mapper.treeToValue(root.path("artists"), Artists.class);
     }
 
     public static Artists searchArtist (Context context) throws URISyntaxException, IOException, InterruptedException {
