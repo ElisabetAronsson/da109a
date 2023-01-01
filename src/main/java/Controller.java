@@ -1,6 +1,8 @@
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import entity.seatgeek.EventWrapper;
 import entity.seatgeek.Events;
+import entity.seatgeek.InfoObjWrapper;
 import entity.seatgeek.Performers;
 import entity.spotify.Artists;
 import entity.spotify.Items;
@@ -12,6 +14,7 @@ import service.WikipediaService;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
@@ -34,7 +37,18 @@ public class Controller {
      */
     public static void getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
         ExtractWrapper extract = WikipediaService.fetchExtract(context);
-        context.json(extract);
+        Events event = SeatgeekService.getSpecificConcert(context);
+
+        InfoObjWrapper infoObjWrapper = new InfoObjWrapper();
+        infoObjWrapper.setExtractWrapper(extract);
+
+        List<Events> eventsList = new ArrayList<>();
+        eventsList.add(event);
+        EventWrapper eventWrapper = new EventWrapper();
+        eventWrapper.setEvents(eventsList);
+        infoObjWrapper.setEventWrapper(eventWrapper);
+
+        context.json(mapper.writeValueAsString(infoObjWrapper));
     }
 
     /**

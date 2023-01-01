@@ -32,7 +32,6 @@ public class SeatgeekService {
 
     public static Events getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
         String concertId = context.pathParam("concert_id");
-
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(new URI("https://api.seatgeek.com/2/events?id=" + concertId + "&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
                 .header("Content-Type","application/json")

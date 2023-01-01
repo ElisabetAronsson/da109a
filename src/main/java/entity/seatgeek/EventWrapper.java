@@ -10,10 +10,6 @@ public class EventWrapper {
         return events;
     }
 
-    public void addEvent(Events event){
-        events.add(event);
-    }
-
     public void setEvents(List<Events> events) {
         this.events = events;
     }
