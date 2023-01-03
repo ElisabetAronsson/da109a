@@ -3,7 +3,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.seatgeek.EventWrapper;
 import entity.seatgeek.Events;
 import entity.seatgeek.InfoObjWrapper;
-import entity.seatgeek.Performers;
 import entity.spotify.Artists;
 import entity.spotify.Items;
 import entity.wikipedia.ExtractWrapper;
@@ -26,11 +25,11 @@ public class Controller {
      */
     public static void getConcertsOfArtist(Context context) throws URISyntaxException, IOException, InterruptedException{
         Artists artists = SpotifyService.getFollowing(context);
-        ExtractWrapper extractWrapper = WikipediaService.fetchExtract(context);
         for (Items items : artists.getItems()) {
             items.setEvents(SeatgeekService.getConcertsOfArtist(items.getName()));
+            ExtractWrapper extractWrapper = WikipediaService.fetchExtract(items.getName());
             items.setExtractWrapper(extractWrapper);
-            System.out.println(items.getExtractWrapper().getExtract());
+            System.out.println(items.getExtractWrapper().getExtract_html());
         }
 
         context.result(mapper.writeValueAsString(artists));
@@ -40,11 +39,11 @@ public class Controller {
      * Hämtar en specifik konsert med ett konsert ID
      */
     public static void getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
-        ExtractWrapper extract = WikipediaService.fetchExtract(context);
+      //  ExtractWrapper extract = WikipediaService.fetchExtract(context);
         Events event = SeatgeekService.getSpecificConcert(context);
 
         InfoObjWrapper infoObjWrapper = new InfoObjWrapper();
-        infoObjWrapper.setExtractWrapper(extract);
+      //  infoObjWrapper.setExtractWrapper(extract);
 
         List<Events> eventsList = new ArrayList<>();
         eventsList.add(event);

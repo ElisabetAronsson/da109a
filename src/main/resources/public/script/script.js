@@ -46,7 +46,7 @@ function fetchInfo(){
 
                     $("#artistName").text(artistName);
                     $("#artistImage").html("<img id='eventArtistImage' src='" + artists[i]["images"][0]["url"] + "'>");
-                    $("#artistInfo"). //Extract ska finnas hos artisten (items)
+                    $("#artistInfo").html(artists[i]["extractWrapper"]["extract_html"])
             
                     $("#eventName").text(eventName);
                     $("#eventWhere").text(artists[i]["events"][y]["venue"]["city"]);

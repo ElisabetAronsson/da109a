@@ -26,6 +26,16 @@ body {
     padding-left: 20px;
 }
 
+.back{
+    display: flex;
+    justify-content: center;
+}
+
+.back p a{
+    text-align: center;
+    color: #FF20CE;
+    font-size: 40px;
+}
 
 /*Index.html*/
 

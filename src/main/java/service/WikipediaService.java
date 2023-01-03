@@ -29,12 +29,11 @@ public class WikipediaService {
     /**
      * hämtar info från wikipedia
      */
-    public static ExtractWrapper fetchExtract (Context context) throws URISyntaxException, IOException, InterruptedException {
-        String name = context.pathParam("artist_name");
-        name = name.replace(" ","_");
+    public static ExtractWrapper fetchExtract (String artistName) throws URISyntaxException, IOException, InterruptedException {
+        artistName = artistName.replace(" ","_");
 
         CloseableHttpClient client = HttpClientBuilder.create().build();
-        HttpResponse response = client.execute(new HttpGet("https://en.wikipedia.org/api/rest_v1/page/summary/"+name));
+        HttpResponse response = client.execute(new HttpGet("https://sv.wikipedia.org/api/rest_v1/page/summary/"+artistName));
         HttpEntity entity = response.getEntity();
         String json = EntityUtils.toString(entity, StandardCharsets.UTF_8);
         ExtractWrapper extract = mapper.readValue(json, ExtractWrapper.class);
