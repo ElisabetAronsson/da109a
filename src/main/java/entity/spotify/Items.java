@@ -2,6 +2,7 @@ package entity.spotify;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import entity.seatgeek.Events;
+import entity.wikipedia.ExtractWrapper;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class Items {
     private Url external_urls;
     private List<Image> images;
     private List<Events> events;
+    private ExtractWrapper extractWrapper;
 
     public Items() {
     }
@@ -53,5 +55,13 @@ public class Items {
 
     public void setEvents(List<Events> events) {
         this.events = events;
+    }
+
+    public ExtractWrapper getExtractWrapper() {
+        return extractWrapper;
+    }
+
+    public void setExtractWrapper(ExtractWrapper extractWrapper) {
+        this.extractWrapper = extractWrapper;
     }
 }

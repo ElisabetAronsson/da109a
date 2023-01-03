@@ -11,9 +11,13 @@ import entity.wikipedia.ExtractWrapper;
 import io.javalin.http.Context;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.config.CookieSpecs;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -28,6 +32,7 @@ public class WikipediaService {
     public static ExtractWrapper fetchExtract (Context context) throws URISyntaxException, IOException, InterruptedException {
         String name = context.pathParam("artist_name");
         name = name.replace(" ","_");
+
         CloseableHttpClient client = HttpClientBuilder.create().build();
         HttpResponse response = client.execute(new HttpGet("https://en.wikipedia.org/api/rest_v1/page/summary/"+name));
         HttpEntity entity = response.getEntity();

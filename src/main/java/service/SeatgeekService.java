@@ -1,9 +1,7 @@
 package service;
-
 import entity.seatgeek.EventWrapper;
 import entity.seatgeek.Events;
 import io.javalin.http.Context;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -11,9 +9,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
-
 import static service.SpotifyService.mapper;
-
 public class SeatgeekService {
 
     public static List<Events> getConcertsOfArtist(String artistName) throws URISyntaxException, IOException, InterruptedException{

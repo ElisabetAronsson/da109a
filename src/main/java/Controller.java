@@ -26,9 +26,13 @@ public class Controller {
      */
     public static void getConcertsOfArtist(Context context) throws URISyntaxException, IOException, InterruptedException{
         Artists artists = SpotifyService.getFollowing(context);
+        ExtractWrapper extractWrapper = WikipediaService.fetchExtract(context);
         for (Items items : artists.getItems()) {
             items.setEvents(SeatgeekService.getConcertsOfArtist(items.getName()));
+            items.setExtractWrapper(extractWrapper);
+            System.out.println(items.getExtractWrapper().getExtract());
         }
+
         context.result(mapper.writeValueAsString(artists));
     }
 
@@ -48,13 +52,13 @@ public class Controller {
         eventWrapper.setEvents(eventsList);
         infoObjWrapper.setEventWrapper(eventWrapper);
 
-        context.json(mapper.writeValueAsString(infoObjWrapper));
+        context.result(mapper.writeValueAsString(infoObjWrapper));
+        //context.json(mapper.writeValueAsString(event));
     }
 
     /**
      * Alla ens artisters konserter i en stad
      */
-    /*
     public static void getAllConcertsInCity(Context context) throws URISyntaxException, IOException, InterruptedException {
         Artists artists = SpotifyService.getFollowing(context);
         for (Items items : artists.getItems()) {
@@ -66,5 +70,4 @@ public class Controller {
         }
         context.result(mapper.writeValueAsString(artists));
     }
-*/
 }
