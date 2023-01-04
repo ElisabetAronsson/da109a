@@ -7,30 +7,20 @@ function fetchEvents(){
         headers: {"Accept": "application/json"}
     })
     .done(function(data){
+        const events=JSON.parse(data)
+
+        $('#artistName').text(artistName);
+        listEvent=$("#eventsList");
+
+        for (i=0; i<events.length; i++){
+            let date=events[i]["datetime_utc"].split("T")
+            let eventName=events[i]["short_title"]
+            html="<div id='event_" + i + "'> <a href='eventAndArtist.html?artist=" + artistName +  "&event=" + eventName + "'> <h4>" + events[i]["short_title"] + "</h4> <p>" + events[i]["venue"]["city"] + "</p> <p>" + date[0] + "</p></a></div>"
+            listEvent.append(html);
+        }
         
     });
 
-    const artists= JSON.parse(window.localStorage.getItem('eventAndArtists'))
-    
-    $('#artistName').text(artistName);
-
-    listEvent=$("#eventsList");
-
-    
-        for(i=0; i<artists.length; i++){
-
-            if(artists[i]["name"]== artistName){
-
-                for(y=0; y<artists[i]["events"].length; y++){
-                    let date = artists[i]["events"][y]["datetime_utc"].split("T")
-
-                    let eventName =  artists[i]["events"][y]["short_title"]
-
-                    html="<div id='event_" + i + "'> <a href='eventAndArtist.html?artist=" + artistName +  "&event=" + eventName + "'> <h4>" + artists[i]["events"][y]["short_title"] + "</h4> <p>" + artists[i]["events"][y]["venue"]["city"] + "</p> <p>" + date[0] + "</p></a></div>"
-                    listEvent.append(html);
-                }
-            }
-        };    
     }
 
 
