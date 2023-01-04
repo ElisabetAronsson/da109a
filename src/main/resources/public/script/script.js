@@ -1,4 +1,6 @@
 function fetchEvents(){
+// Funktionen hämtar en lista med event kopplat till en specifik artist från backend.
+
     let params = (new URL(location.href)).searchParams;
     let artistName = params.get('artist').replace("%20", " ");
     let artistID =params.get('artistID');
@@ -22,8 +24,9 @@ function fetchEvents(){
     });
 }
 
-
 function fetchInfo(){
+// Funktionen hämtar ett specifikt event från en specifik artist från backen.
+
     let params = (new URL(location.href)).searchParams;
 
     let artistName = params.get('artist').replace("%20", " ");
@@ -53,7 +56,10 @@ function fetchInfo(){
 }
 
 function fetchArtists(){
+// Funktionen hämtar en lista med alla följda artister från en användare
+
     const token= window.localStorage.getItem('access_token')
+
     $.ajax({
         url: 'http://localhost:8888/api/v1/artists',
         headers: {"Accept": "application/json", 'Authorization': 'Bearer '+ token}
