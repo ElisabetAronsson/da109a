@@ -39,8 +39,7 @@ function fetchInfo(){
         headers: {"Accept": "application/json", 'Authorization': 'Bearer '+ token}
     })
     .done(function(concertAndArtist){
-       console.log(concertAndArtist)
-       
+
        let date = concertAndArtist["events"][0]["datetime_utc"].split("T") //problem 
 
        $("#artistName").text(artistName);
