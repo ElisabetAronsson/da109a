@@ -37,6 +37,7 @@ public class WikipediaService {
         HttpEntity entity = response.getEntity();
         String json = EntityUtils.toString(entity, StandardCharsets.UTF_8);
         ExtractWrapper extract = mapper.readValue(json, ExtractWrapper.class);
+        System.out.println(extract.getExtract_html());
         return extract;
     }
 }

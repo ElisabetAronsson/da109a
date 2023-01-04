@@ -8,15 +8,16 @@ public class Events {
     private String short_title;
     private Venue venue;
     private String datetime_utc;
-    private List<Performers> performers;
+    private String url;
+    //private List<Performers> performers;
 
-    public List<Performers> getPerformers() {
+    /*public List<Performers> getPerformers() {
         return performers;
-    }
+    }*/
 
-    public void setPerformers(List<Performers> performers) {
+    /*public void setPerformers(List<Performers> performers) {
         this.performers = performers;
-    }
+    }*/
 
     public String getDatetime_utc() {
         return datetime_utc;
@@ -56,5 +57,13 @@ public class Events {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

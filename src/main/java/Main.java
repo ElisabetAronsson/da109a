@@ -22,7 +22,7 @@ public class Main {
 
            path("api/v1/artists", () -> get(Controller::getFollowedArtists));
            path("api/v1/artists/{artistName}/concerts", () -> get(Controller::getArtistConcerts));
-           path("api/v1/artists/{artistName}/concerts/{concertID}", () -> get(Controller::getArtistSpecificConcert));
+           path("api/v1/artists/{id}/concerts/{concertName}", () -> get(Controller::getArtistSpecificConcert));
 
         });
     }
