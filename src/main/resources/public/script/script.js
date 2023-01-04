@@ -11,8 +11,6 @@ function fetchEvents(){
     })
     .done(function(events){
     
-        console.log(events)
-
         $('#artistName').text(artistName);
         listEvent=$("#eventsList");
 
@@ -34,26 +32,27 @@ function fetchInfo(){
     let concertID = params.get('event');
     let artistID = params.get('artistID');
 
+    const token= window.localStorage.getItem('access_token')
+
     $.ajax({
         url: 'http://localhost:8888/api/v1/artists/' + artistID + '/concerts/' + concertID,
-        headers: {"Accept": "application/json"}
-
+        headers: {"Accept": "application/json", 'Authorization': 'Bearer '+ token}
     })
     .done(function(concertAndArtist){
        console.log(concertAndArtist)
        
-       const date = concertAndArtist["events"]["datetime_utc"].split("T")
+       const date = concertAndArtist["events"][0]["datetime_utc"].split("T")
 
        $("#artistName").text(artistName);
        $("#artistImage").html("<img id='eventArtistImage' src='" + concertAndArtist["images"][0]["url"] + "'>");
        $("#artistInfo").html(concertAndArtist["extractWrapper"]["extract_html"])
 
-       $("#eventName").text(concertAndArtist["events"]["short_title"]);
-       $("#eventWhere").text(concertAndArtist["events"]["venue"]["city"]);
+       $("#eventName").text(concertAndArtist["events"][0]["short_title"]);
+       $("#eventWhere").text(concertAndArtist["events"][0]["venue"]["city"]);
        $("#eventDate").text(date[0]);
        $("#eventTime").text(date[1])
-       $("#eventLocation").text(concertAndArtist["events"]["venue"]["name"]);
-       $("#eventLink").html("<a href=' " + concertAndArtist["events"]["link"] +"'>"+ concertAndArtist["event"]["short_title"] +"</a>") 
+       $("#eventLocation").text(concertAndArtist["events"][0]["venue"]["name"]);
+       $("#eventLink").html("<a href=' " + concertAndArtist["events"][0]["url"] +"'>"+ concertAndArtist["events"][0]["short_title"] +"</a>") 
     }); 
 }
 
