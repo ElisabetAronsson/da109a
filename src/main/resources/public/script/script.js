@@ -63,7 +63,7 @@ function fetchInfo(){
 function fetchArtists(){
     const token= window.localStorage.getItem('access_token')
     $.ajax({
-        url: 'http://localhost:8888/api/v1/artists/concerts',
+        url: 'http://localhost:8888/api/v1/artists',
         headers: {"Accept": "application/json", 'Authorization': 'Bearer '+ token}
     })
     .done(function(data){

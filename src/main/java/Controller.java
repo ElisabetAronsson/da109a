@@ -55,18 +55,19 @@ public class Controller {
         //context.json(mapper.writeValueAsString(event));
     }
 
-    /**
-     * Alla ens artisters konserter i en stad
-     */
-    public static void getAllConcertsInCity(Context context) throws URISyntaxException, IOException, InterruptedException {
+    public static void getFollowedArtists(Context context) throws URISyntaxException, IOException, InterruptedException{
         Artists artists = SpotifyService.getFollowing(context);
-        for (Items items : artists.getItems()) {
-            String name = items.getName();
-            List<Events> event = SeatgeekService.getMyArtistsConcertsInCity(name, context);
-            if (event!= null) {
-                items.setEvents(event);
-            }
-        }
         context.result(mapper.writeValueAsString(artists));
+
     }
+
+    public static void getArtistConcerts(Context context) throws URISyntaxException, IOException, InterruptedException{
+
+
+    }
+
+    public static void getArtistSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
+
+    }
+
 }
