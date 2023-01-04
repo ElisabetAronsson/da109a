@@ -56,7 +56,7 @@ function fetchInfo(){
 }
 
 function fetchArtists(){
-// Funktionen hämtar en lista med alla följda artister från en användare
+// Funktionen hämtar en lista med alla följda artister från en användare.
 
     const token= window.localStorage.getItem('access_token')
 
