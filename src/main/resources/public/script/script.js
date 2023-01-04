@@ -3,7 +3,7 @@ function fetchEvents(){
     let artistName = params.get('artist').replace("%20", " ")
 
     $.ajax({
-        url: 'http://localhost:8888/api/v1/artists/{' + artistName + '}/concerts',
+        url: 'http://localhost:8888/api/v1/artists/' + artistName + '/concerts',
         headers: {"Accept": "application/json"}
     })
     .done(function(data){
