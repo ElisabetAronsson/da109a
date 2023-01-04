@@ -14,8 +14,8 @@ function fetchEvents(){
 
         for (i=0; i<events.length; i++){
             let date=events[i]["datetime_utc"].split("T")
-            let eventName=events[i]["short_title"]
-            html="<div id='event_" + i + "'> <a href='eventAndArtist.html?artist=" + artistName +  "&event=" + eventName + "'> <h4>" + events[i]["short_title"] + "</h4> <p>" + events[i]["venue"]["city"] + "</p> <p>" + date[0] + "</p></a></div>"
+            let concertID=events[i]["id"]
+            html="<div id='event_" + i + "'> <a href='eventAndArtist.html?artist=" + artistName +  "&event=" + concertID + "'> <h4>" + events[i]["short_title"] + "</h4> <p>" + events[i]["venue"]["city"] + "</p> <p>" + date[0] + "</p></a></div>"
             listEvent.append(html);
         }
         
@@ -28,7 +28,35 @@ function fetchInfo(){
     let params = (new URL(location.href)).searchParams;
 
     let artistName = params.get('artist').replace("%20", " ");
-    let eventName = params.get('event').replace("%20", " ");
+    let concertID = params.get('event').replace("%20", " ");
+
+    $.ajax({
+        url: 'http://localhost:8888/api/v1/artists/' + artistName + '/concerts/' + concertID,
+        headers: {"Accept": "application/json"}
+    })
+    .done(function(data){
+       const concertAndArtist =JSON.parse(data)
+       
+       const date = concertAndArtist["events"]["datetime_utc"].split("T")
+
+       $("#artistName").text(artistName);
+       $("#artistImage").html("<img id='eventArtistImage' src='" + concertAndArtist["images"][0]["url"] + "'>");
+       $("#artistInfo").html(concertAndArtist["extractWrapper"]["extract_html"])
+
+       $("#eventName").text(concertAndArtist["event"]["short_title"]);
+       $("#eventWhere").text(concertAndArtist["event"]["venue"]["city"]);
+       $("#eventDate").text(date[0]);
+       $("#eventTime").text(date[1])
+       $("#eventLocation").text(concertAndArtist["event"]["venue"]["name"]);
+       $("#eventLink").html("<a href=' " + concertAndArtist["event"]["link"] +"'>"+ concertAndArtist["event"]["short_title"] +"</a>")
+       
+        
+    });
+
+
+
+
+
    
     const artists= JSON.parse(window.localStorage.getItem('eventAndArtists'))
         
@@ -40,17 +68,7 @@ function fetchInfo(){
 
                 if(artists[i]["events"][y]["short_title"] == eventName){
 
-                    let date = artists[i]["events"][y]["datetime_utc"].split("T")
-
-                    $("#artistName").text(artistName);
-                    $("#artistImage").html("<img id='eventArtistImage' src='" + artists[i]["images"][0]["url"] + "'>");
-                    $("#artistInfo").html(artists[i]["extractWrapper"]["extract_html"])
-            
-                    $("#eventName").text(eventName);
-                    $("#eventWhere").text(artists[i]["events"][y]["venue"]["city"]);
-                    $("#eventDate").text(date[0]);
-                    $("#eventTime").text(date[1])
-                    $("#eventLocation").text(artists[i]["events"][y]["venue"]["name"]);
+                    
 
                 }
             }
