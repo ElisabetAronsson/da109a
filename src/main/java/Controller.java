@@ -20,6 +20,13 @@ public class Controller {
     }
 
     /**
+     * hämtar en lista med endast namnet på artister man följer på spotify
+     */
+    public static void getFollowingList(Context context) throws URISyntaxException, IOException, InterruptedException {
+        context.result(mapper.writeValueAsString(SpotifyService.getFollowingList(context)));
+    }
+
+    /**
      * Hämtar en specifik artist man sökt på
      */
     public static void searchArtist (Context context) throws URISyntaxException, IOException, InterruptedException {

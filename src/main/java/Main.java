@@ -26,6 +26,9 @@ public class Main {
            path("/api/v1/concerts/{concert_id}", () -> get(Controller::getSpecificConcert));
 
            path("/api/v1/location/{location_id}/", () -> get(Controller::getAllConcertsInCity));
+
+           path("/api/v1/list/artists/", () -> get(Controller::getFollowingList));
+
         });
     }
 

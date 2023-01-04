@@ -3,6 +3,7 @@ package service;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entity.spotify.Example;
+import entity.spotify.Items;
 import io.javalin.http.Context;
 
 import java.io.IOException;
@@ -11,8 +12,11 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SpotifyService {
+    public static List<String> artistNames;
     static final String BASE_URL = "https://api.spotify.com/v1/";
     static final int LIMIT = 10;
     static final ObjectMapper mapper = new ObjectMapper()
@@ -28,7 +32,29 @@ public class SpotifyService {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
+
         return mapper.readValue(getResponse.body(), Example.class);
+    }
+
+    public static List<String> getFollowingList(Context context) throws URISyntaxException, IOException, InterruptedException {
+        String token = context.req().getHeader("Authorization");
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + "me/following?type=artist&limit=" + LIMIT))
+                .header("Content-Type", "application/json")
+                .header("Authorization", token)
+                .build();
+
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
+
+        artistNames = new ArrayList<>();
+
+        List<Items> itemsList = mapper.readValue(getResponse.body(), Example.class).getArtists().getItems();
+        for (Items item: itemsList) {
+            artistNames.add(item.getName());
+        }
+
+        return artistNames;
     }
 
     public static Example searchArtist (Context context) throws URISyntaxException, IOException, InterruptedException {
@@ -43,6 +69,4 @@ public class SpotifyService {
         HttpResponse<String> postResponse = httpClient.send(postRequest, HttpResponse.BodyHandlers.ofString());
         return mapper.readValue(postResponse.body(), Example.class);
     }
-
-
 }
