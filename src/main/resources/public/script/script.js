@@ -2,6 +2,14 @@ function fetchEvents(){
     let params = (new URL(location.href)).searchParams;
     let artistName = params.get('artist').replace("%20", " ")
 
+    $.ajax({
+        url: 'http://localhost:8888/api/v1/artists/{' + artistName + '}/concerts',
+        headers: {"Accept": "application/json"}
+    })
+    .done(function(data){
+        
+    });
+
     const artists= JSON.parse(window.localStorage.getItem('eventAndArtists'))
     
     $('#artistName').text(artistName);

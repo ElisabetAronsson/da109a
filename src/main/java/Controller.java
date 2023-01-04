@@ -58,7 +58,6 @@ public class Controller {
     public static void getFollowedArtists(Context context) throws URISyntaxException, IOException, InterruptedException{
         Artists artists = SpotifyService.getFollowing(context);
         context.result(mapper.writeValueAsString(artists));
-
     }
 
     public static void getArtistConcerts(Context context) throws URISyntaxException, IOException, InterruptedException{
