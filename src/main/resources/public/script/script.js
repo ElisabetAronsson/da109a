@@ -41,7 +41,7 @@ function fetchInfo(){
     .done(function(concertAndArtist){
        console.log(concertAndArtist)
        
-       const date = concertAndArtist["events"][0]["datetime_utc"].split("T")
+       let date = concertAndArtist["events"][0]["datetime_utc"].split("T") //problem 
 
        $("#artistName").text(artistName);
        $("#artistImage").html("<img id='eventArtistImage' src='" + concertAndArtist["images"][0]["url"] + "'>");
