@@ -1,5 +1,5 @@
 function fetchEvents(){
-// Funktionen hämtar en lista med event kopplat till en specifik artist från backend.
+    // Funktionen hämtar en lista med event kopplat till en specifik artist från backend.
 
     let params = (new URL(location.href)).searchParams;
     let artistName = params.get('artist').replace("%20", " ");
@@ -24,7 +24,7 @@ function fetchEvents(){
 }
 
 function fetchInfo(){
-// Funktionen hämtar ett specifikt event från en specifik artist från backen.
+    // Funktionen hämtar ett specifikt event från en specifik artist från backen.
 
     let params = (new URL(location.href)).searchParams;
 
@@ -38,6 +38,7 @@ function fetchInfo(){
         url: 'http://localhost:8888/api/v1/artists/' + artistID + '/concerts/' + concertID,
         headers: {"Accept": "application/json", 'Authorization': 'Bearer '+ token}
     })
+    
     .done(function(concertAndArtist){
 
        let date = concertAndArtist["events"][0]["datetime_utc"].split("T") //problem 
@@ -56,7 +57,7 @@ function fetchInfo(){
 }
 
 function fetchArtists(){
-// Funktionen hämtar en lista med alla följda artister från en användare.
+    // Funktionen hämtar en lista med alla följda artister från en användare.
 
     const token= window.localStorage.getItem('access_token')
 
