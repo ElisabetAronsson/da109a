@@ -9,8 +9,9 @@ function fetchEvents(){
         url: 'http://localhost:8888/api/v1/artists/' + artistName + '/concerts',
         headers: {"Accept": "application/json"}
     })
-    .done(function(data){
-        const events=JSON.parse(data)
+    .done(function(events){
+    
+        console.log(events)
 
         $('#artistName').text(artistName);
         listEvent=$("#eventsList");
@@ -36,9 +37,10 @@ function fetchInfo(){
     $.ajax({
         url: 'http://localhost:8888/api/v1/artists/' + artistID + '/concerts/' + concertID,
         headers: {"Accept": "application/json"}
+
     })
-    .done(function(data){
-       const concertAndArtist =JSON.parse(data)
+    .done(function(concertAndArtist){
+       console.log(concertAndArtist)
        
        const date = concertAndArtist["events"]["datetime_utc"].split("T")
 
