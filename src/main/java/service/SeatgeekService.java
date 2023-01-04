@@ -27,7 +27,7 @@ public class SeatgeekService {
     }
 
     public static Events getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
-        String concertId = context.pathParam("concert_id");
+        String concertId = context.pathParam("concertName");
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(new URI("https://api.seatgeek.com/2/events?id=" + concertId + "&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
                 .header("Content-Type","application/json")
@@ -35,7 +35,8 @@ public class SeatgeekService {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        return mapper.readValue(getResponse.body(), Events.class);
+        EventWrapper eventWrapper = mapper.readValue(getResponse.body(), EventWrapper.class);
+        return eventWrapper.getEvents().get(0);
     }
 
     /**För att hämta alla konserter i den staden man söker på

@@ -62,11 +62,19 @@ public class Controller {
     }
 
     public static void getArtistConcerts(Context context) throws URISyntaxException, IOException, InterruptedException{
-
+        String s = context.pathParam("artistName");
+        //SeatgeekService.getConcertsOfArtist(s);
+        context.json(SeatgeekService.getConcertsOfArtist(s));
 
     }
 
     public static void getArtistSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
+        Items items = SpotifyService.getArtists(context);
+        items.setExtractWrapper(WikipediaService.fetchExtract(items.getName()));
+        items.setEvents(new ArrayList<Events>());
+        Events e = SeatgeekService.getSpecificConcert(context);
+        items.getEvents().add(SeatgeekService.getSpecificConcert(context));
+        context.json(items);
 
     }
 
