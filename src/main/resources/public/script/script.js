@@ -10,15 +10,23 @@ function fetchEvents(){
         headers: {"Accept": "application/json"}
     })
     .done(function(events){
+        listEvent=$("#eventsList");
+        
+        if (events < 1){
+            html="<p>"+ artistName + " har tyvärr inga inplanerade event för tillfället.</p>"
+            listEvent.append(html);
+            console.log("hej")
+        }
     
         $('#artistName').text(artistName);
-        listEvent=$("#eventsList");
 
         for (i=0; i<events.length; i++){
-            let date=events[i]["datetime_utc"].split("T")
             let concertID=events[i]["id"]
+            let date=events[i]["datetime_utc"].split("T")
+        
             html="<div id='event_" + i + "'> <a href='eventAndArtist.html?artist=" + artistName + "&artistID=" + artistID + "&event=" + concertID + "'> <h4>" + events[i]["short_title"] + "</h4> <p>" + events[i]["venue"]["city"] + "</p> <p>" + date[0] + "</p></a></div>"
             listEvent.append(html);
+        
         }
     });
 }
