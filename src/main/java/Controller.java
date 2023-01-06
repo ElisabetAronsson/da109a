@@ -10,7 +10,6 @@ import io.javalin.http.Context;
 import service.SeatgeekService;
 import service.SpotifyService;
 import service.WikipediaService;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -57,14 +56,16 @@ public class Controller {
 
     public static void getFollowedArtists(Context context) throws URISyntaxException, IOException, InterruptedException{
         Artists artists = SpotifyService.getFollowing(context);
-        context.result(mapper.writeValueAsString(artists));
+        if (artists == null) {
+            context.result();
+        } else {
+            context.result(mapper.writeValueAsString(artists));
+        }
     }
 
     public static void getArtistConcerts(Context context) throws URISyntaxException, IOException, InterruptedException{
         String s = context.pathParam("artistName");
-        //SeatgeekService.getConcertsOfArtist(s);
         context.json(SeatgeekService.getConcertsOfArtist(s));
-
     }
 
     public static void getArtistSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
