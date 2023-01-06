@@ -15,7 +15,6 @@ function fetchEvents(){
         if (events < 1){
             html="<p>"+ artistName + " har tyvärr inga inplanerade event för tillfället.</p>"
             listEvent.append(html);
-            console.log("hej")
         }
     
         $('#artistName').text(artistName);
