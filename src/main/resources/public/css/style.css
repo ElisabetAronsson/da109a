@@ -37,132 +37,6 @@ body {
     font-size: 40px;
 }
 
-/*Index.html*/
-
-#searchBox {
-    width: 80%;
-    height: 60%;
-    max-width: 600px; 
-    background-color: black;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#h1Big{
-    text-align: center;
-    font-family: "Fredoka One";
-    font-size: 50px;
-    background: linear-gradient(90deg,#FF20CE 4.08%, #9E00FF 46.17%, #10d1c4 88.27%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding: 0 20px;
-}
-
-#searchButton {
-    margin-bottom: 30px;
-    width: 220px;
-    padding: 10px;
-    background-color:#FF20CE;
-    border: none;
-    margin: 60px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-    border-radius: 10px;
-}
-
-
-button:hover{
-    border-radius: 10px;
-    color:#adf6f2;
-}
-/*listArtists.html*/
-
-#tableBox{
-    background-color: black;
-    max-width: 800px;
-    width: 80%;
-    min-height: 100vh;
-}
-
-.artistListImage{
-    width: 200px;
-    height: 200px;
-    border: 3px solid #9E00FF;
-    
-}
-
-#artistsList div, #eventsList div{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin: 20px;
-    width: 200px;
-    border-radius: 10px;
-    background-color: rgb(26 26 26);
-    cursor: pointer;
-}
-
-#artistsList, #eventsList{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#eventsList p {
-    text-align: center;
-}
-
-
-/*eventAndArtist.html*/
-
-.blackBackground {
-    background-color: black;
-}
-
-#container {
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
-    max-width: 1050px;
-}
-
-
-.gray{
-    border-radius: 20px;
-    background-color: rgb(26 26 26);
-    padding: 20px;
-    margin: 40px;
-    max-width: 600px;
-    width: 60%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-#eventInfoColumn{
-    display: flex;
-    flex-direction: column;
-}
-
-.eventInfoRow{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-#eventArtistImage {
-    width: 200px;
-    border: 3px solid #9E00FF;
-}
-
-.link {
-    display: flex;
-    justify-content: center;
-}
-
-
 p {
     color:#adf6f2;
     font-size: 15px;
@@ -200,10 +74,126 @@ a:hover{
     color:#FF20CE;
 }
 
+/*Index.html*/
+#searchBox {
+    width: 80%;
+    height: 60%;
+    max-width: 600px; 
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#h1Big{
+    text-align: center;
+    font-family: "Fredoka One";
+    font-size: 50px;
+    background: linear-gradient(90deg,#FF20CE 4.08%, #9E00FF 46.17%, #10d1c4 88.27%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0 20px;
+}
+
+#searchButton {
+    margin-bottom: 30px;
+    width: 220px;
+    padding: 10px;
+    background-color:#FF20CE;
+    border: none;
+    margin: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+button:hover{
+    border-radius: 10px;
+    color:#adf6f2;
+}
+
+/*listArtists.html och listEvent.html*/
+#tableBox{
+    background-color: black;
+    max-width: 800px;
+    width: 80%;
+    min-height: 100vh;
+}
+
+.artistListImage{
+    width: 200px;
+    height: 200px;
+    border: 3px solid #9E00FF;
+}
+
+#artistsList div, #eventsList div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 20px;
+    width: 200px;
+    border-radius: 10px;
+    background-color: rgb(26 26 26);
+    cursor: pointer;
+}
+
+#artistsList, #eventsList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#eventsList p {
+    text-align: center;
+}
+
+/*eventAndArtist.html*/
+.blackBackground {
+    background-color: black;
+}
+
+#container {
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    max-width: 1050px;
+}
+
+.gray{
+    border-radius: 20px;
+    background-color: rgb(26 26 26);
+    padding: 20px;
+    margin: 40px;
+    max-width: 600px;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#eventInfoColumn{
+    display: flex;
+    flex-direction: column;
+}
+
+.eventInfoRow{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#eventArtistImage {
+    width: 200px;
+    border: 3px solid #9E00FF;
+}
+
+.link {
+    display: flex;
+    justify-content: center;
+}
 
 @media screen and (max-width: 850px) {
-
-
     #searchBox {
         height: 80%;
     }
