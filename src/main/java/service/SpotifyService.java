@@ -49,17 +49,26 @@ public class SpotifyService {
      * @throws InterruptedException
      */
     public static Items getArtist(Context context) throws IOException, InterruptedException {
+        String token;
+        if (context.req().getHeader("Authorization") == null) {
+            token = "";
+        } else {
+            token = context.req().getHeader("Authorization");
+        }
         String id = context.pathParam("id");
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "artists/" + id))
                 .header("Content-Type", "application/json")
                 .header("Authorization", context.req().getHeader("Authorization"))
                 .build();
-
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        System.out.println(getResponse.body().toUpperCase());
-        return mapper.readValue(getResponse.body(), Items.class);
+
+        if (getResponse.statusCode() == 200)  {
+            return mapper.readValue(getResponse.body(), Items.class);
+        } else {
+            return null;
+        }
     }
 
 }
