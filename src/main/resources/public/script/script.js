@@ -38,7 +38,7 @@ function fetchInfo(){
         url: 'http://localhost:8888/api/v1/artists/' + artistID + '/concerts/' + concertID,
         headers: {"Accept": "application/json", 'Authorization': 'Bearer '+ token}
     })
-    
+
     .done(function(concertAndArtist){
 
        let date = concertAndArtist["events"][0]["datetime_utc"].split("T") //problem 
@@ -52,7 +52,7 @@ function fetchInfo(){
        $("#eventDate").text(date[0]);
        $("#eventTime").text(date[1])
        $("#eventLocation").text(concertAndArtist["events"][0]["venue"]["name"]);
-       $("#eventLink").html("<a href=' " + concertAndArtist["events"][0]["url"] +"'>"+ concertAndArtist["events"][0]["short_title"] +"</a>") 
+       $("#eventLink").html("<a href=' " + concertAndArtist["events"][0]["url"] +"'>Länk till eventet</a>") 
     }); 
 }
 
