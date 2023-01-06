@@ -24,7 +24,11 @@ public class Controller {
      */
    public static void getFollowedArtists(Context context) throws URISyntaxException, IOException, InterruptedException{
         Artists artists = SpotifyService.getFollowing(context);
-        context.result(mapper.writeValueAsString(artists));
+        if (artists == null) {
+            context.result();
+        }   else {
+            context.result(mapper.writeValueAsString(artists));
+       }
     }
 
     /**
@@ -48,10 +52,8 @@ public class Controller {
      */
     public static void getArtistSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
         Items items = SpotifyService.getArtist(context);
-        System.out.println(items.getName());
         items.setExtractWrapper(WikipediaService.fetchExtract(items.getName()));
         items.setEvents(new ArrayList<Events>());
-        Events e = SeatgeekService.getSpecificConcert(context);
         items.getEvents().add(SeatgeekService.getSpecificConcert(context));
         context.json(items);
     }
