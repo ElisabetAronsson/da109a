@@ -17,9 +17,10 @@ public class Main {
                 .get("/listArtists", ctx -> ctx.redirect("listArtists.html"))
                 .start(8888);
 
-        //API Endpoints
+        /**
+         * API endpoints
+         */
         app.routes(() -> {
-
            path("api/v1/artists", () -> get(Controller::getFollowedArtists));
            path("api/v1/artists/{artistName}/concerts", () -> get(Controller::getArtistConcerts));
            path("api/v1/artists/{id}/concerts/{concertName}", () -> get(Controller::getArtistSpecificConcert));

@@ -15,18 +15,20 @@ import java.net.http.HttpResponse;
 
 public class SpotifyService {
     static final String BASE_URL = "https://api.spotify.com/v1/";
-    static final int LIMIT = 50;
+    static final int LIMIT = 10;
     static final ObjectMapper mapper = new ObjectMapper()
             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
+    /**
+     * Hämtar listan av följda artister
+     * @param context
+     * @return
+     * @throws URISyntaxException
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public static Artists getFollowing(Context context) throws URISyntaxException, IOException, InterruptedException {
-        String token;
-        if (context.req().getHeader("Authorization") == null) {
-            token = "";
-        } else {
-            token = context.req().getHeader("Authorization");
-        }
-
+        String token = context.req().getHeader("Authorization");
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "me/following?type=artist&limit=" + LIMIT))
                 .header("Content-Type", "application/json")
@@ -35,37 +37,29 @@ public class SpotifyService {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-
-        if (getResponse.statusCode() == 200) {
-            JsonNode root = mapper.readTree(getResponse.body());
-            return mapper.treeToValue(root.path("artists"), Artists.class);
-        } else {
-            context.result(getResponse.body());
-            context.status(getResponse.statusCode());
-            return null;
-        }
+        JsonNode root = mapper.readTree(getResponse.body());
+        return mapper.treeToValue(root.path("artists"), Artists.class);
     }
 
-    public static Items getArtists(Context context) throws IOException, InterruptedException {
-        String token;
-        if (context.req().getHeader("Authorization") == null) {
-            token = "";
-        } else {
-            token = context.req().getHeader("Authorization");
-        }
+    /**
+     * Hämtar en specifik artist
+     * @param context
+     * @return
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public static Items getArtist(Context context) throws IOException, InterruptedException {
         String id = context.pathParam("id");
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "artists/" + id))
                 .header("Content-Type", "application/json")
                 .header("Authorization", context.req().getHeader("Authorization"))
                 .build();
+
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-
-        if (getResponse.statusCode() == 200)  {
-            return mapper.readValue(getResponse.body(), Items.class);
-        } else {
-            return null;
-        }
+        System.out.println(getResponse.body().toUpperCase());
+        return mapper.readValue(getResponse.body(), Items.class);
     }
+
 }

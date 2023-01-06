@@ -1,7 +1,5 @@
 package entity.spotify;
 
-import entity.seatgeek.Events;
-
 import java.util.List;
 
 public class Artists {

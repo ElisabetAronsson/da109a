@@ -1,7 +1,5 @@
 package entity.seatgeek;
 
-import java.util.List;
-
 public class Events {
     private String title;
     private String id;
@@ -9,15 +7,6 @@ public class Events {
     private Venue venue;
     private String datetime_utc;
     private String url;
-    //private List<Performers> performers;
-
-    /*public List<Performers> getPerformers() {
-        return performers;
-    }*/
-
-    /*public void setPerformers(List<Performers> performers) {
-        this.performers = performers;
-    }*/
 
     public String getDatetime_utc() {
         return datetime_utc;

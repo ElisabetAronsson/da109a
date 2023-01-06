@@ -12,6 +12,14 @@ import java.util.List;
 import static service.SpotifyService.mapper;
 public class SeatgeekService {
 
+    /**
+     * Hämtar lista av konserter tillhörande en artist
+     * @param artistName
+     * @return
+     * @throws URISyntaxException
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public static List<Events> getConcertsOfArtist(String artistName) throws URISyntaxException, IOException, InterruptedException{
         artistName = artistName.replace(' ', '-');
 
@@ -26,6 +34,14 @@ public class SeatgeekService {
         return mapper.readValue(getResponse.body(), EventWrapper.class).getEvents();
     }
 
+    /**
+     * Hämtar en specifik konsert av en artist
+     * @param context
+     * @return
+     * @throws URISyntaxException
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public static Events getSpecificConcert(Context context) throws URISyntaxException, IOException, InterruptedException{
         String concertId = context.pathParam("concertName");
         HttpRequest getRequest = HttpRequest.newBuilder()
@@ -38,27 +54,4 @@ public class SeatgeekService {
         EventWrapper eventWrapper = mapper.readValue(getResponse.body(), EventWrapper.class);
         return eventWrapper.getEvents().get(0);
     }
-
-    /**För att hämta alla konserter i den staden man söker på
-     *
-     * kan fixa: så man bara ser konserter artisterna du följer har i den staden
-     */
-    public static List<Events> getMyArtistsConcertsInCity(String artistName, Context context) throws URISyntaxException, IOException, InterruptedException {
-        String pathParamCity = context.pathParam("city");
-        String paramName = artistName;
-        String city = pathParamCity.replace(' ', '+');
-        String name = paramName.replace(' ', '+');
-
-        HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(new URI("https://api.seatgeek.com/2/events?type=concert&venue.city=" + city + "&performers.slug=" + name +"&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI"))
-                .header("Content-Type","application/json")
-                .build();
-
-        HttpClient httpClient = HttpClient.newHttpClient();
-        HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        if(!getResponse.body().isEmpty()) {
-            return mapper.readValue(getResponse.body(), EventWrapper.class).getEvents();
-        } else return null;
-    }
-
 }

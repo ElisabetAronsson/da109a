@@ -15,7 +15,7 @@ import static service.SpotifyService.mapper;
 
 public class WikipediaService {
     /**
-     * hämtar info från wikipedia
+     * Hämtar information från wikipedia
      */
     public static ExtractWrapper fetchExtract (String artistName) throws URISyntaxException, IOException, InterruptedException {
         artistName = artistName.replace(" ","_");
