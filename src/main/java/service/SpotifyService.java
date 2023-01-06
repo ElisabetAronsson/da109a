@@ -28,7 +28,13 @@ public class SpotifyService {
      * @throws InterruptedException
      */
     public static Artists getFollowing(Context context) throws URISyntaxException, IOException, InterruptedException {
-        String token = context.req().getHeader("Authorization");
+        String token;
+        if (context.req().getHeader("Authorization") == null) {
+            token = "";
+        } else {
+            token = context.req().getHeader("Authorization");
+        }
+
         HttpRequest getRequest = HttpRequest.newBuilder()
                 .uri(URI.create(BASE_URL + "me/following?type=artist&limit=" + LIMIT))
                 .header("Content-Type", "application/json")
@@ -37,8 +43,15 @@ public class SpotifyService {
 
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
-        JsonNode root = mapper.readTree(getResponse.body());
-        return mapper.treeToValue(root.path("artists"), Artists.class);
+
+        if (getResponse.statusCode() == 200) {
+            JsonNode root = mapper.readTree(getResponse.body());
+            return mapper.treeToValue(root.path("artists"), Artists.class);
+        } else {
+            context.result(getResponse.body());
+            context.status(getResponse.statusCode());
+            return null;
+        }
     }
 
     /**
