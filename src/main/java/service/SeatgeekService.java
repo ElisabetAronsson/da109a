@@ -28,7 +28,6 @@ public class SeatgeekService {
                 .header("Content-Type","application/json")
                 .build();
 
-        System.out.println("https://api.seatgeek.com/2/events?performers.slug=" + artistName + "&per_page=50&client_id=MzEwOTIxMTd8MTY3MTQ1NTk5My40MDc0MjI");
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpResponse<String> getResponse = httpClient.send(getRequest, HttpResponse.BodyHandlers.ofString());
         return mapper.readValue(getResponse.body(), EventWrapper.class).getEvents();
